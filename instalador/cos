@@ -1,0 +1,58 @@
+#!/bin/zsh
+# Entrada del instalador del Chief of Staff en Mac. Busca Node (o lo baja a ~/.chief-of-staff sin
+# pedir contraseña) y le pasa el paso a cos.mjs. Uso: instalador/cos <paso> [opciones]
+# En Windows, la entrada es cos.ps1.
+set -euo pipefail
+
+AQUI="${0:A:h}"
+CASA="${COS_HOME:-$HOME/.chief-of-staff}"
+NODE_VERSION="v22.23.4"
+NODE_LOCAL="$CASA/herramientas/node/bin/node"
+
+umask 077
+mkdir -p "$CASA/herramientas"
+
+node_sirve() {
+  [[ -x "$1" ]] || return 1
+  local mayor
+  mayor="$("$1" -p 'process.versions.node.split(".")[0]' 2>/dev/null)" || return 1
+  (( mayor >= 20 ))
+}
+
+bajar_node() {
+  local arq tmp archivo
+  case "$(uname -m)" in
+    arm64) arq="darwin-arm64" ;;
+    x86_64) arq="darwin-x64" ;;
+    *) echo '{"error":"Esta Mac no es arm64 ni x86_64"}'; exit 1 ;;
+  esac
+  archivo="node-$NODE_VERSION-$arq.tar.gz"
+  tmp="$(mktemp -d)"
+  echo "Bajando Node $NODE_VERSION de nodejs.org (una sola vez, unos 50 MB)..." >&2
+  curl -fsSL "https://nodejs.org/dist/$NODE_VERSION/$archivo" -o "$tmp/$archivo"
+  curl -fsSL "https://nodejs.org/dist/$NODE_VERSION/SHASUMS256.txt" -o "$tmp/SHASUMS256.txt"
+  local esperado real
+  esperado="$(grep " $archivo\$" "$tmp/SHASUMS256.txt" | awk '{print $1}')"
+  real="$(shasum -a 256 "$tmp/$archivo" | awk '{print $1}')"
+  if [[ -z "$esperado" || "$esperado" != "$real" ]]; then
+    rm -rf "$tmp"
+    echo '{"error":"La descarga de Node no coincide con la firma publicada; no se instaló"}'
+    exit 1
+  fi
+  rm -rf "$CASA/herramientas/node"
+  mkdir -p "$CASA/herramientas/node"
+  tar -xzf "$tmp/$archivo" -C "$CASA/herramientas/node" --strip-components 1
+  rm -rf "$tmp"
+}
+
+NODE=""
+if [[ -z "${COS_FORZAR_NODE:-}" ]] && node_sirve "$(command -v node 2>/dev/null || true)"; then
+  NODE="$(command -v node)"
+elif node_sirve "$NODE_LOCAL"; then
+  NODE="$NODE_LOCAL"
+else
+  bajar_node
+  NODE="$NODE_LOCAL"
+fi
+
+exec "$NODE" "$AQUI/cos.mjs" "$@"

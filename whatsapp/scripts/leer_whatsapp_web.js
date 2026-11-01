@@ -1,0 +1,172 @@
+// Lector de WhatsApp Web para el Chief of Staff. Solo lectura.
+// Se pega tal cual en javascript_tool de Claude in Chrome, en una pestaña propia de web.whatsapp.com.
+// Imprime el reporte en la consola con el prefijo [COS]; se lee con read_console_messages (pattern "^\[COS\]", clear true).
+// Nunca escribe en la caja de mensajes, nunca presiona Enter, nunca usa menús de chat.
+//
+// Uso:  await __cos.corrida({ maximo: 20, mensajes: 6 })        lista + abre los chats que lo ameritan
+//       await __cos.leer(['Nombre exacto del chat'], 8)          abre chats que pida Opus
+// Opción abrirNoLeidos (falsa por defecto) en corrida, leer y abrir: abrir un chat con no leídos lo marca
+// como leído en todos sus dispositivos y manda las palomitas azules si la persona las tiene activas.
+// Sin la opción, abrir revisa la fila justo antes del clic y no abre un chat con no leídos.
+// Solo se pasa cuando la persona pidió abrir ese chat: await __cos.leer(['Nombre'], 8, { abrirNoLeidos: true })
+(() => {
+  const esperar = ms => new Promise(r => setTimeout(r, ms));
+  const panel = () => document.querySelector('#pane-side');
+  const TICKS = /ic-read|check|delivered|ic-sent|status-time|pending|clock/i;
+  const ACUSE = /^(ok|okay|va|sale|listo|perfecto!*|gracias!*|mil gracias!*|graa+cias!*|de acuerdo.*|claro|👍|🙏|saludos.*|this message was deleted|se eliminó este mensaje)$/i;
+
+  function filas() {
+    const p = panel();
+    return [...p.querySelectorAll('[role="row"]')]
+      .map(r => ({ r, top: r.getBoundingClientRect().top + p.scrollTop }))
+      .sort((a, b) => a.top - b.top);
+  }
+
+  function leerFila({ r, top }) {
+    const t = r.querySelector('[data-testid="cell-frame-title"] span[title]');
+    const st = r.querySelector('[data-testid="last-msg-status"]');
+    const iconos = st ? [...st.querySelectorAll('svg title')].map(x => x.textContent) : [];
+    const hojas = st ? [...st.querySelectorAll('span')].filter(s => !s.children.length && s.innerText.trim()) : [];
+    const prefijo = hojas.length > 1 && /:$/.test(hojas[1].innerText.trim()) ? hojas[0].innerText.trim() : null;
+    const u = r.querySelector('[data-testid="icon-unread-count"]');
+    const n = u ? parseInt(((u.getAttribute('aria-label') || '').match(/\d+/) || [0])[0], 10) : 0;
+    const simbolos = iconos.filter(x => !TICKS.test(x));
+    let texto = hojas.length ? hojas[hojas.length - 1].innerText.replace(/\s+/g, ' ').trim().slice(0, 160) : '';
+    // Una imagen sin texto en un grupo deja solo el ":" del remitente.
+    if (!texto || texto === ':') texto = simbolos.some(x => /image/.test(x)) ? '[imagen]' : texto;
+    return {
+      chat: t ? t.getAttribute('title').trim() : '',
+      hora: (r.querySelector('[data-testid="chat-list-timestamp"]')?.innerText || '').trim(),
+      remitente: prefijo,
+      // Una llamada saliente no lleva palomitas: el ícono call-made la marca como propia.
+      mio: iconos.some(x => TICKS.test(x) || /call-made/.test(x)) || ['You', 'Tú'].includes(prefijo),
+      simbolos,
+      texto,
+      no_leidos: n || (u ? 1 : 0),
+      silenciado: !!r.querySelector('[data-testid="mute-notifications-refreshed"]'),
+      top: Math.round(top)
+    };
+  }
+
+  async function filtro(nombre) {
+    const b = [...document.querySelectorAll('button, [role="tab"]')].find(x => x.innerText.trim().startsWith(nombre));
+    if (b) { b.click(); await esperar(1200); }
+    return !!b;
+  }
+
+  async function grupos() {
+    const p = panel(), g = new Set();
+    if (!(await filtro('Groups') || await filtro('Grupos'))) return g;
+    for (let i = 0; i < 12; i++) {
+      filas().forEach(f => { const c = leerFila(f).chat; if (c) g.add(c); });
+      if (p.scrollTop + p.clientHeight >= p.scrollHeight - 5) break;
+      p.scrollTop += p.clientHeight; await esperar(450);
+    }
+    p.scrollTop = 0;
+    await filtro('All') || await filtro('Todos');
+    return g;
+  }
+
+  async function listar(maximo = 20) {
+    const p = panel(), vistos = new Map();
+    p.scrollTop = 0; await esperar(300);
+    for (let i = 0; i < 10 && vistos.size < maximo; i++) {
+      filas().forEach(f => { const x = leerFila(f); if (x.chat && !vistos.has(x.chat)) vistos.set(x.chat, x); });
+      if (vistos.size >= maximo) break;
+      p.scrollTop += p.clientHeight * 0.8; await esperar(450);
+    }
+    p.scrollTop = 0;
+    return [...vistos.values()].sort((a, b) => a.top - b.top).slice(0, maximo);
+  }
+
+  // La lista es virtual: un mensaje nuevo reordena las filas y recicla los nodos.
+  // Por eso se busca la fila justo antes del clic y se valida el título exacto del chat abierto.
+  const buscar = nombre => [...panel().querySelectorAll('[data-testid="cell-frame-title"] span[title]')].find(s => s.getAttribute('title') === nombre);
+  const tituloAbierto = () => document.querySelector('#main header span[dir="auto"]')?.innerText.trim();
+
+  async function abrir(nombre, n = 6, { abrirNoLeidos = false } = {}) {
+    const p = panel();
+    let span = null;
+    p.scrollTop = 0; await esperar(200);
+    for (let i = 0; i < 15 && !span; i++) {
+      span = buscar(nombre);
+      if (!span) { p.scrollTop += p.clientHeight * 0.8; await esperar(400); }
+    }
+    if (!span) return { chat: nombre, error: 'no encontrado' };
+    span.scrollIntoView({ block: 'center' });
+    await esperar(300);
+    span = buscar(nombre);
+    if (!span) return { chat: nombre, error: 'la lista se reordenó' };
+    const fila = span.closest('[role="row"]');
+    const antes = leerFila({ r: fila, top: 0 }).no_leidos;
+    // También cubre el chat que recibió un mensaje entre la lista y el clic.
+    if (antes && !abrirNoLeidos) return { chat: nombre, error: 'tiene no leídos; se abre solo con abrirNoLeidos', no_leidos_antes: antes, no_leidos_despues: antes };
+    const celda = span.closest('[data-testid="cell-frame-container"]') || fila;
+    for (const t of ['mousedown', 'mouseup', 'click']) celda.dispatchEvent(new MouseEvent(t, { bubbles: true, cancelable: true, view: window }));
+    for (let i = 0; i < 24 && tituloAbierto() !== nombre; i++) await esperar(250);
+    if (tituloAbierto() !== nombre) return { chat: nombre, error: 'abrió otro chat' };
+    const main = document.querySelector('#main');
+    await esperar(500);
+    const els = [...main.querySelectorAll('[data-pre-plain-text]')].slice(-n);
+    const mensajes = els.map(m => {
+      const meta = m.getAttribute('data-pre-plain-text') || '';
+      const fila = m.closest('[role="row"]') || m.parentElement;
+      const mio = [...fila.querySelectorAll('svg title')].some(t => TICKS.test(t.textContent));
+      const sel = m.querySelector('.selectable-text');
+      return {
+        cuando: (meta.match(/^\[([^\]]+)\]/) || [])[1] || '',
+        quien: mio ? 'YO' : ((meta.match(/\]\s*([^:]+):/) || [])[1] || '').trim(),
+        texto: (sel ? sel.innerText : m.innerText).replace(/\s+/g, ' ').trim().slice(0, 240)
+      };
+    });
+    if (tituloAbierto() !== nombre) return { chat: nombre, error: 'cambió de chat al leer' };
+    const s = buscar(nombre);
+    const despues = s ? leerFila({ r: s.closest('[role="row"]'), top: 0 }).no_leidos : null;
+    p.scrollTop = 0;
+    return { chat: nombre, mensajes, no_leidos_antes: antes, no_leidos_despues: despues };
+  }
+
+  function amerita(x, opciones) {
+    if (x.mio) return false;
+    if (x.no_leidos && !opciones.abrirNoLeidos) return false;
+    if (x.silenciado && !x.no_leidos) return false;
+    if (ACUSE.test(x.texto)) return false;
+    return true;
+  }
+
+  function imprimir(rep) {
+    const L = [];
+    L.push(`[COS] corrida ${rep.inicio} | ${rep.ms} ms | foco ${rep.foco} | visible ${rep.visible} | chats ${rep.chats.length} | grupos ${rep.chats.filter(c => c.es_grupo).length} | con no leidos ${rep.chats.filter(c => c.no_leidos).length} | abiertos ${rep.abiertos.length}`);
+    rep.chats.forEach((c, i) => L.push(`${i}|${c.chat}|${c.es_grupo ? 'G' : 'P'}|${c.hora}|${c.mio ? 'YO' : (c.remitente || 'otro')}|nl ${c.no_leidos}${c.silenciado ? '|silenciado' : ''}|${c.simbolos.join(',')}|${c.texto}`));
+    rep.abiertos.forEach(a => {
+      L.push(`## ${a.chat}${a.error ? ' ERROR ' + a.error : ''} | no leidos antes ${a.no_leidos_antes} despues ${a.no_leidos_despues}`);
+      (a.mensajes || []).forEach(m => L.push(`${m.cuando}|${m.quien}|${m.texto}`));
+    });
+    console.log(L.join('\n'));
+    return L.join('\n').length;
+  }
+
+  async function corrida({ maximo = 20, mensajes = 6, abrirMaximo = 8, abrirNoLeidos = false } = {}) {
+    const t0 = Date.now();
+    // navigate regresa antes de que WhatsApp pinte la lista: se espera hasta 30 s a la lista o al QR.
+    for (let i = 0; i < 60 && !panel()?.querySelector('[role="row"]') && !document.querySelector('canvas[aria-label]'); i++) await esperar(500);
+    if (!panel()?.querySelector('[role="row"]')) { console.log('[COS] SIN_SESION ' + (document.querySelector('canvas[aria-label]') ? 'pide QR' : 'no cargó la lista de chats en 30 s')); return 'sin sesion'; }
+    await esperar(800);
+    const G = await grupos();
+    const chats = (await listar(maximo)).map(x => ({ ...x, es_grupo: G.has(x.chat) }));
+    const abiertos = [];
+    for (const c of chats.filter(c => amerita(c, { abrirNoLeidos })).slice(0, abrirMaximo)) abiertos.push(await abrir(c.chat, mensajes, { abrirNoLeidos }));
+    const rep = { inicio: new Date(t0).toISOString(), ms: Date.now() - t0, foco: document.hasFocus(), visible: document.visibilityState, chats, abiertos };
+    window.__cosUltima = rep;
+    return `listo: ${imprimir(rep)} caracteres en consola`;
+  }
+
+  async function leer(nombres, n = 8, { abrirNoLeidos = false } = {}) {
+    const abiertos = [];
+    for (const x of nombres) abiertos.push(await abrir(x, n, { abrirNoLeidos }));
+    imprimir({ inicio: new Date().toISOString(), ms: 0, foco: document.hasFocus(), visible: document.visibilityState, chats: [], abiertos });
+    return 'listo';
+  }
+
+  window.__cos = { corrida, leer, listar, abrir };
+})();

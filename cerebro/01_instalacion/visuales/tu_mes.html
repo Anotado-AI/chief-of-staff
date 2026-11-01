@@ -1,0 +1,5 @@
+<h2 class="sr-only">Los {{llegaron_a_tu_bandeja}} correos del último mes que llegaron a tu bandeja, por tipo, con cuántos abres de cada cien</h2>
+<div style="display:grid;grid-template-columns:120px minmax(0,1fr) 56px 120px;gap:8px 12px;align-items:center;font-size:14px;overflow-wrap:anywhere;">
+<span style="font-size:12px;color:var(--text-muted)">Tipo</span><span></span><span style="font-size:12px;color:var(--text-muted);text-align:right">Al mes</span><span style="font-size:12px;color:var(--text-muted)">Abres</span>
+{{#tipos}}<span>{{tipo}}</span><span style="height:14px;width:{{ancho}}%;background:var(--fill-accent);border-radius:0 4px 4px 0"></span><span style="text-align:right">{{cifra}}</span><span style="color:var(--text-secondary)">{{abre}} de cada 100</span>
+{{/tipos}}</div>

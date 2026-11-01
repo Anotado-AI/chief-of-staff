@@ -1,0 +1,10 @@
+<h2 class="sr-only">{{n_personas}} personas que nunca esperan, con cuánto tardas en contestarles y su último asunto</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;overflow-wrap:anywhere;">
+{{#personas}}<div style="background:var(--surface-2);border:0.5px solid var(--border);border-radius:12px;padding:12px 14px">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:36px;height:36px;flex:none;border-radius:50%;background:var(--bg-accent);color:var(--text-accent);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500">{{iniciales}}</div><div><p style="margin:0;font-weight:500;font-size:14px">{{nombre}}</p><p style="margin:0;font-size:12px;color:var(--text-secondary)">{{relacion}}</p></div></div>
+{{#contesta_en}}<p style="margin:0;font-size:12px;color:var(--text-secondary)">Le contestas en</p><p style="margin:0 0 6px;font-size:14px">{{contesta_en}}</p>{{/contesta_en}}
+<p style="margin:0;font-size:12px;color:var(--text-secondary)">Se escriben</p><p style="margin:0 0 6px;font-size:14px">{{veces}} veces en 90 días</p>
+<p style="margin:0;font-size:12px;color:var(--text-secondary)">Último</p><p style="margin:0;font-size:14px">{{fecha}} · {{asunto}}</p>
+</div>{{/personas}}
+</div>
+<div style="margin-top:12px"><button onclick="sendPrompt('Así está bien')">Así está bien ↗</button></div>

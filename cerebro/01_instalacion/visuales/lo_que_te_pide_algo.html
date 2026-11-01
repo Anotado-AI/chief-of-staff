@@ -1,0 +1,7 @@
+<h2 class="sr-only">Los {{n_asuntos}} asuntos más urgentes que te piden algo, con su fecha y lo que te recomiendo</h2>
+<div style="border:0.5px solid var(--border);border-radius:12px;overflow:hidden;overflow-wrap:anywhere;">
+{{#asuntos}}<div style="padding:12px 14px;border-bottom:0.5px solid var(--border);background:var(--surface-2)">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><p style="margin:0;font-size:14px;font-weight:500">{{quien}} · {{que}}</p>{{#urgente}}<span style="flex:none;font-size:12px;background:var(--bg-warning);color:var(--text-warning);padding:2px 8px;border-radius:var(--radius)">{{fecha}}</span>{{/urgente}}{{^urgente}}<span style="flex:none;font-size:12px;color:var(--text-secondary)">{{fecha}}</span>{{/urgente}}</div>
+<p style="margin:4px 0 0;font-size:13px;color:var(--text-secondary)">{{recomendacion}}</p>
+</div>{{/asuntos}}
+</div>

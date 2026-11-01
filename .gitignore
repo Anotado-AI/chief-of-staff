@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+Instalacion.js
+.clasp.json
+whatsapp/ultima_lectura.json

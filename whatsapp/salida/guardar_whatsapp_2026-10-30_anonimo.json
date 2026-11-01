@@ -1,0 +1,187 @@
+{
+ "hora_lectura": "2026-10-30T17:06:33-06:00",
+ "fuente": "whatsapp_web",
+ "nota": "Ejemplo anónimo de la corrida real; el JSON con nombres no se guarda en el repo.",
+ "chats": [
+  {
+   "chat": "Grupo 1",
+   "es_grupo": true,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T17:04:00-06:00",
+   "resumen": "Hay una tarea con fecha en el grupo.",
+   "necesita_respuesta": false,
+   "compromiso": "Compromiso con fecha"
+  },
+  {
+   "chat": "Grupo 2",
+   "es_grupo": true,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T16:45:00-06:00",
+   "resumen": "Grupo informativo; nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 1",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T16:21:00-06:00",
+   "resumen": "Pidió una llamada o respuesta; confirma si ya hablaron.",
+   "necesita_respuesta": true,
+   "compromiso": "Compromiso con fecha"
+  },
+  {
+   "chat": "Persona 2",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T11:57:00-06:00",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 3",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T10:46:00-06:00",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Grupo 3",
+   "es_grupo": true,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T09:49:00-06:00",
+   "resumen": "Grupo informativo; nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 4",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T09:15:00-06:00",
+   "resumen": "Pidió una llamada o respuesta; confirma si ya hablaron.",
+   "necesita_respuesta": true,
+   "compromiso": "Compromiso con fecha"
+  },
+  {
+   "chat": "Persona 5",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-30T07:43:00-06:00",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 6",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-29",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 7",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-29",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 8",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-29T13:41:00-06:00",
+   "resumen": "Hay un compromiso de un tercero pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": "Compromiso con fecha"
+  },
+  {
+   "chat": "Grupo 4",
+   "es_grupo": true,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-29T11:30:00-06:00",
+   "resumen": "Hay una tarea con fecha en el grupo.",
+   "necesita_respuesta": false,
+   "compromiso": "Compromiso con fecha"
+  },
+  {
+   "chat": "Grupo 5",
+   "es_grupo": true,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-28T22:37:00-06:00",
+   "resumen": "Proponen una reunión y falta tu confirmación.",
+   "necesita_respuesta": true,
+   "compromiso": "Compromiso con fecha"
+  },
+  {
+   "chat": "Persona 9",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-28T17:19:00-06:00",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 10",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-28",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 11",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-28",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 12",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-28",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 13",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-27",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 14",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-27",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  },
+  {
+   "chat": "Persona 15",
+   "es_grupo": false,
+   "no_leidos": 0,
+   "ultimo_mensaje_fecha": "2026-10-27",
+   "resumen": "Nada pendiente.",
+   "necesita_respuesta": false,
+   "compromiso": null
+  }
+ ]
+}
