@@ -296,6 +296,7 @@ body[data-vista="plan"] .pestanas, body[data-vista="plan"] .nav { display: none;
 .resumen__lista li + li { margin-top: 4px; }
 .como__lista { margin: 0; padding-left: 20px; list-style: disc; font: 400 16px/22px var(--fuente); text-wrap: pretty; }
 .como__lista li + li { margin-top: 8px; }
+.app-gmail { display: flex; justify-content: center; margin: 2px 0 0; }
 .pie-como { margin: 4px 0 0; padding: 0 16px; text-align: center; font-size: 15px; line-height: 20px; }
 .como-tarjeta__fila { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: 12px; row-gap: 2px; padding-top: 8px; padding-bottom: 8px; }
 .como-tarjeta__t { font: 600 15px/20px var(--fuente); }
@@ -1994,10 +1995,12 @@ const CUENTA_GMAIL = typeof window.COS_CUENTA === 'string' ? window.COS_CUENTA :
 // iPhone y iPad, también el iPad que se presenta como Mac con pantalla táctil
 function esIOS() { const ua = navigator.userAgent || ''; return /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1); }
 const BASE_GMAIL = 'https://mail.google.com/mail/' + (CUENTA_GMAIL ? '?authuser=' + encodeURIComponent(CUENTA_GMAIL) : 'u/0/');
-// Computadora y Android: el enlace web; Android lo abre en la app de Gmail (assetlinks de mail.google.com).
-// iPhone y iPad: el esquema de la app; el respaldo web lo pone el toque (abrirGmailApp)
+function esAndroid() { return /Android/.test(navigator.userAgent || ''); }
+// Computadora: el enlace web. Android: la vista móvil de Gmail, la única que llega al correo exacto; abre en Chrome.
+// iPhone y iPad: el esquema de la app. Si la app no abre, el toque deja la vista móvil junto al botón (abrirGmailApp)
 function urlHiloWeb(id) { return BASE_GMAIL + '#all/' + encodeURIComponent(id); }
-function urlHilo(id) { return esIOS() ? 'googlegmail:///cv=' + encodeURIComponent(id) + '/accountId=1/label=%23all' : urlHiloWeb(id); }
+function urlHiloMovil(id) { return 'https://mail.google.com/mail/mu/mp/' + (CUENTA_GMAIL ? '?authuser=' + encodeURIComponent(CUENTA_GMAIL) : '') + '#cv/all/' + encodeURIComponent(id); }
+function urlHilo(id) { return esIOS() ? 'googlegmail:///cv=' + encodeURIComponent(id) + '/accountId=1/label=%23all' : esAndroid() ? urlHiloMovil(id) : urlHiloWeb(id); }
 function urlBusqueda(q) { return BASE_GMAIL + '#search/' + encodeURIComponent(q); }
 const URL_BORRADORES = BASE_GMAIL + '#drafts';
 
@@ -3360,6 +3363,9 @@ function mosaico(icono, tipos) {
   return '<span class="mosaico' + (tipos ? tipos.split(' ').map(t => ' mosaico--' + t).join('') : '') + '" aria-hidden="true">' + ico(icono) + '</span>';
 }
 const foco = k => ' data-foco="' + esc(k) + '"';
+// Un solo botón en Hoy abre la app en su última pantalla. Android: cada correo abre en Chrome y la app sale por una página de salto. iPhone y iPad: su esquema
+const botonAppGmail = () => { const u = esAndroid() ? 'https://anotado.ai/chief/gmail' : esIOS() ? 'googlegmail://' : '';
+  return u ? '<div class="app-gmail"><a class="btn btn--s" href="' + u + '" target="_top"' + foco('app-gmail') + '>Abrir la app de Gmail' + ico('externa') + '</a></div>' : ''; };
 const gmail = (id, etiqueta, clase) => '<a class="btn ' + (clase || 'btn--s') + '" href="' + esc(urlHilo(id)) + '" target="_blank" rel="noopener"' + foco('gmail:' + id) + '>' + esc(etiqueta || 'Abrir en Gmail') + ico('externa') + '</a>';
 
 // El sol de la marca, de día: completo y con ocho rayos. Cada copia lleva su propio id de degradado
@@ -3477,6 +3483,7 @@ function pintarHoy() {
   if (d.sinRevisar) html += pintarSinRevisar(d.sinRevisar);
   // La meta es la bandeja limpia: su cifra abre Hoy, antes que todo lo demás
   if (d.bandeja) html += pintarBandeja(d.bandeja, d);
+  html += botonAppGmail();
   const x = experienciaHoy(d), t = x.textos;
   // Arriba siempre, con cualquier experiencia: el estado del sistema, el riesgo y los temas sensibles
   let arriba = '';
@@ -4224,6 +4231,7 @@ function pintarHoy2() {
   if (d.cupo) html += pintarCupo(d.cupo);
   if (d.sinRevisar) html += pintarSinRevisar(d.sinRevisar);
   if (d.bandeja) html += pintarBandeja(d.bandeja, d);
+  html += botonAppGmail();
   const x = experienciaHoy(d), t = x.textos;
   // Arriba siempre: el plan, la pausa y el riesgo, en rojo, con su señal y una acción
   let arriba = '';
@@ -6001,28 +6009,35 @@ function cerrarSeguimiento(clave, motivo, texto) {
 }
 
 // iPhone y iPad: el enlace a la app de Gmail sale del iframe de Apps Script con el toque (target _top). Si en 1.5 s la página
-// sigue a la vista, no hay app: abro el enlace web y, si el navegador lo bloquea, dejo ese enlace junto al botón
+// sigue a la vista, dejo la vista móvil del correo junto al botón; nunca la abro sola. Safari pregunta antes de abrir la app con la
+// página a la vista: si se oculta después, la app abrió y el enlace se quita
 function abrirGmailApp(a) {
   a.target = '_top';
-  const m = /cv=([^/]+)/.exec(a.getAttribute('href')), web = m ? urlHiloWeb(decodeURIComponent(m[1])) : BASE_GMAIL;
-  let fuera = false;
-  const salir = () => { fuera = true; }, vista = () => { if (document.hidden) fuera = true; };
-  window.addEventListener('pagehide', salir);
-  document.addEventListener('visibilitychange', vista);
-  setTimeout(() => {
+  const m = /cv=([^/]+)/.exec(a.getAttribute('href')), web = m ? urlHiloMovil(decodeURIComponent(m[1])) : BASE_GMAIL;
+  let enlace = null, reloj = 0;
+  const salir = () => {
+    clearTimeout(reloj);
+    if (enlace) enlace.remove();
     window.removeEventListener('pagehide', salir);
     document.removeEventListener('visibilitychange', vista);
-    if (fuera || document.hidden) return;
-    if (window.open(web, '_blank', 'noopener')) return;
-    if (a.nextElementSibling && a.nextElementSibling.classList.contains('gmail-web')) return;
+  };
+  const vista = () => { if (document.hidden) salir(); };
+  window.addEventListener('pagehide', salir);
+  document.addEventListener('visibilitychange', vista);
+  reloj = setTimeout(() => {
+    if (document.hidden) return salir();
+    if (!a.isConnected) return;
+    const junto = a.nextElementSibling;
+    if (junto && junto.classList.contains('gmail-web')) { enlace = junto; return; }
     a.insertAdjacentHTML('afterend', '<a class="enlace gmail-web" href="' + esc(web) + '" target="_blank" rel="noopener">Ábrelo en Gmail en el navegador</a>');
+    enlace = a.nextElementSibling;
   }, 1500);
 }
 
 document.addEventListener('click', ev => {
   // El toque que termina un desliz no abre la fila ni su enlace; lo demás (Deshacer, por ejemplo) sí responde
   if (Date.now() - ultimoDesliz.t < 500 && ultimoDesliz.card && ultimoDesliz.card.contains(ev.target)) { ev.preventDefault(); return; }
-  const g = ev.target.closest('a[href^="googlegmail:"]');
+  const g = ev.target.closest('a[href^="googlegmail:///cv="]');
   if (g) { abrirGmailApp(g); return; }
   const el = ev.target.closest('[data-accion]');
   if (!el || el.disabled) return;
