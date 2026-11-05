@@ -36,7 +36,7 @@ Los permisos de Google dependen de lo que elijas. El calendario no se pide al in
 | `motor/` | Código del motor y del conector (Apps Script) |
 | `webapp/` | La web app (va en el mismo proyecto que el motor) |
 | `cerebro/` | La plática de instalación y los prompts de las rutinas |
-| `relevo/` | El relevo de Cloudflare Workers (lo opera el dueño del producto; no viene en el paquete de anotado.ai) |
+| `whatsapp/` | Lector de WhatsApp Web en solo lectura y su tarea programada |
 | `instalador/` | Los pasos que corre Claude (`cos`) |
 
 ## Desinstalar
