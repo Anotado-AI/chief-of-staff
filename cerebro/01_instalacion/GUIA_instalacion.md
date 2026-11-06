@@ -409,7 +409,7 @@ proponer({tipo: 'plan', lote: 'instalacion', objeto: 'grupo:ofertas@liverpool.co
 - `quitar` solo borra un valor igual en el mismo campo. Si la política atrapa al remitente por su dominio, quitarlo no lo saca: agrega una excepción, `{politica: {id: 'compras', agregar: {excepciones: [{campo: 'remitente', valores: ['ofertas@liverpool.com.mx']}]}}}`.
 - Mover un remitente no enciende ninguna de las dos políticas: cada una se enciende con su propia propuesta.
 - "Darme de baja" va solo si la baja es de un clic y el remitente no es sospechoso.
-- Cada remitente para baja lleva su propia propuesta `grupo:<remitente>` (con `lineamiento: 'sobra'` en el plan por lineamientos), con dos opciones: "Darme de baja" y "Solo a la papelera". Su `texto` es la pregunta: "Ofertas Viva: 8 al mes, abriste 0. ¿Te doy de baja o solo a la papelera?". Tu recomendación va en el `texto`, nunca en `recomendada`, y mandas `recomendada: null`: sin ese null el motor marca la primera opción. Cada baja la decide la persona y "Acepto" no la toma. Nunca una propuesta que dé de baja a varios a la vez.
+- Cada remitente para baja lleva su propia propuesta `grupo:<remitente>` (con `lineamiento: 'sobra'` en el plan por lineamientos), con dos opciones: "Darme de baja" y "Solo a la papelera". Su `texto` es la pregunta: "Ofertas de vuelos: 8 al mes, abriste 0. ¿Te doy de baja o solo a la papelera?". Tu recomendación va en el `texto`, nunca en `recomendada`, y mandas `recomendada: null`: sin ese null el motor marca la primera opción. Cada baja la decide la persona y "Acepto" no la toma. Nunca una propuesta que dé de baja a varios a la vez.
 
 **Qué toma "Acepto".** En la web app, "Acepto todo" contesta con su recomendada cada propuesta del plan que tiene una: lineamientos, dudas, los tres ajustes, sus revisiones y su Hoy. En el chat, "acepto" toma lo mismo: el plan está en su web app con ejemplos de su correo, y el mensaje del paso 5 lo resume. La diferencia: con "acepto" en Claude, lo que propusiste en Lo hago solo entra en Te aviso y su propuesta queda abierta hasta su toque en la web app, y cada baja a un remitente nuevo también espera su toque. Quedan fuera las propuestas sin `recomendada`: cada baja, porque no tiene Deshacer y la persona la decide remitente por remitente, y lo anterior a la fecha, que se pregunta aparte. Una baja que no contestó se queda abierta y sale en la tarjeta del día. Es la misma regla de la tarjeta del día en la web app.
 
@@ -457,7 +457,7 @@ Tus instrucciones para tu Chief of Staff están listas. Revísalas en tu página
 - Sin leer te queda solo lo que te necesita: de tus 39 sin leer, 6 te piden algo; los demás los marco leídos.
 - Lo que te llegó el último mes a tu bandeja bajaría de 348 a 104.
 - Tus lineamientos (qué hago con cada tipo de correo) van como te recomiendo: lo que no abres sale de tu bandeja, como Liverpool; los boletines van a Leer después, y recibos y bancos a su carpeta. Hoy solo te enseña lo que te pide algo.
-- Te aviso en Hoy de lo que hago, con Deshacer. De 3 remitentes que nunca abres, como Ofertas Viva, en tus instrucciones te pregunto uno por uno si te doy de baja o solo los mando a la papelera.
+- Te aviso en Hoy de lo que hago, con Deshacer. De 3 remitentes que nunca abres, como Ofertas de vuelos, en tus instrucciones te pregunto uno por uno si te doy de baja o solo los mando a la papelera.
 - Si prefieres decidir aquí, te enseño tus lineamientos.
 
 ¿Las aceptas o qué cambias?

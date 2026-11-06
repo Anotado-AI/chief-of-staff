@@ -849,7 +849,7 @@ const PRUEBA = (() => {
 
   /* ---------- Memoria ---------- */
   s.perfil = {
-    texto: 'Este trimestre me importan tres cosas: el presupuesto 2027 de Altavista, la Serie A de Nodo y el podcast con Estudio Faro.\n\nSofía, mi asistente, coordina mi agenda. Lo que ella mande siempre pasa.\n\nNunca toques lo del colegio ni lo del banco.',
+    texto: 'Este trimestre me importan tres cosas: el presupuesto 2027 del consejo, la renovación del contrato con mi cliente más grande y la auditoría.\n\nSofía, mi asistente, coordina mi agenda. Lo que ella mande siempre pasa.\n\nNunca toques lo del colegio ni lo del banco.',
     temas_sensibles: ['dinero', 'contratos', 'consejo', 'prensa'], actualizada: '2026-10-27'
   };
   // El perfil de rutinas que deja el plan (?rutinas=ligero o completo)
@@ -861,93 +861,93 @@ const PRUEBA = (() => {
   const F = (id, tipo, nombre, x) => Object.assign({ id: id, tipo: tipo, nombre: nombre, direcciones: [], dominios: [], chats_whatsapp: [], organizacion: null, rol: '', relacion: '',
     importancia: 'normal', temas_abiertos: [], ultima_interaccion: null, notas: '', definido_por: 'opus', actualizada: '2026-10-29' }, x);
   s.fichas = [
-    F('f-altavista', 'organizacion', 'Grupo Altavista', { dominios: ['altavista.mx'], rol: 'Consejo de administración', relacion: 'Consejo', importancia: 'alta',
+    F('f-consejo', 'organizacion', 'Consejo', { dominios: ['consejo.ejemplo.com'], rol: 'Consejo de administración', relacion: 'Consejo', importancia: 'alta',
       temas_abiertos: ['Voto del presupuesto 2027', 'Flujo del trimestre'], ultima_interaccion: { fecha: T(30, '08:40'), canal: 'whatsapp', resumen: 'Bruno pidió confirmar quién llega en persona a la sesión' },
-      notas: 'Lo de Altavista siempre te lo pregunto: es consejo.\nSus facturas de honorarios se quedan en tu bandeja.', actualizada: '2026-10-28' }),
-    F('f-bruno', 'persona', 'Bruno Salas', { direcciones: ['bruno.salas@altavista.mx'], chats_whatsapp: ['Consejo Altavista'], organizacion: 'f-altavista', rol: 'CFO', relacion: 'Consejo', importancia: 'alta',
+      notas: 'Lo del consejo siempre te lo pregunto.\nSus facturas de honorarios se quedan en tu bandeja.', actualizada: '2026-10-28' }),
+    F('f-bruno', 'persona', 'Bruno Salas', { direcciones: ['bruno.salas@consejo.ejemplo.com'], chats_whatsapp: ['Consejo'], organizacion: 'f-consejo', rol: 'CFO', relacion: 'Consejo', importancia: 'alta',
       temas_abiertos: ['Voto del presupuesto 2027', 'Flujo del trimestre'], ultima_interaccion: { fecha: T(30, '08:40'), canal: 'whatsapp', resumen: 'Pidió confirmar quién llega en persona a la sesión' },
       notas: 'Para lo urgente escribe por WhatsApp y espera respuesta el mismo día.\nTe manda el flujo del trimestre la última semana de cada mes.', actualizada: '2026-10-27' }),
-    F('f-lucia', 'persona', 'Lucía Herrera', { direcciones: ['lucia.herrera@altavista.mx'], organizacion: 'f-altavista', rol: 'Secretaria del consejo', relacion: 'Consejo' }),
-    F('f-faro', 'organizacion', 'Estudio Faro', { dominios: ['estudiofaro.mx'], rol: 'Productora del podcast', relacion: 'Proyecto', temas_abiertos: ['Grabación del jueves', 'Guion revisado'],
-      ultima_interaccion: { fecha: T(30, '09:52'), canal: 'correo', resumen: 'Laura pidió confirmar la grabación del jueves' }, notas: 'Graban los jueves.', actualizada: '2026-10-14' }),
-    F('f-laura', 'persona', 'Laura Méndez', { direcciones: ['laura@estudiofaro.mx'], organizacion: 'f-faro', rol: 'Coordinadora del podcast', relacion: 'Proyecto', temas_abiertos: ['Grabación del jueves', 'Guion revisado'],
-      ultima_interaccion: { fecha: T(30, '09:52'), canal: 'correo', resumen: 'Pidió confirmar la grabación del jueves' },
-      notas: 'Prefiere grabar antes de mediodía.\nConfirma por correo; no usa WhatsApp para trabajo.', actualizada: '2026-10-30' }),
+    F('f-lucia', 'persona', 'Lucía Herrera', { direcciones: ['lucia.herrera@consejo.ejemplo.com'], organizacion: 'f-consejo', rol: 'Secretaria del consejo', relacion: 'Consejo' }),
+    F('f-auditores', 'organizacion', 'Auditores', { dominios: ['auditores.ejemplo.com'], rol: 'Auditores externos', relacion: 'Proveedor', temas_abiertos: ['Junta del jueves', 'Informe revisado'],
+      ultima_interaccion: { fecha: T(30, '09:52'), canal: 'correo', resumen: 'Laura pidió confirmar la junta del jueves' }, notas: 'Se reúnen contigo los jueves.', actualizada: '2026-10-14' }),
+    F('f-laura', 'persona', 'Laura Méndez', { direcciones: ['laura@auditores.ejemplo.com'], organizacion: 'f-auditores', rol: 'Socia de auditoría', relacion: 'Proveedor', temas_abiertos: ['Junta del jueves', 'Informe revisado'],
+      ultima_interaccion: { fecha: T(30, '09:52'), canal: 'correo', resumen: 'Pidió confirmar la junta del jueves' },
+      notas: 'Prefiere reunirse antes de mediodía.\nConfirma por correo; no usa WhatsApp para trabajo.', actualizada: '2026-10-30' }),
     // Escribe desde su correo personal: solo el filtro por organización lo encuentra
-    F('f-tomas', 'persona', 'Tomás Rivas', { direcciones: ['tomas.rivas.audio@ejemplo.com'], organizacion: 'f-faro', rol: 'Ingeniero de audio', relacion: 'Proyecto',
-      ultima_interaccion: { fecha: '2026-10-23', canal: 'correo', resumen: 'Mandó la mezcla del episodio 12' } }),
-    F('f-nodo', 'organizacion', 'Nodo', { dominios: ['nodo.mx'], rol: 'Empresa en la que inviertes', relacion: 'Inversión', importancia: 'alta', temas_abiertos: ['Hoja de términos de la Serie A', 'Números del trimestre'],
-      ultima_interaccion: { fecha: '2026-10-29', canal: 'correo', resumen: 'Le recordaste a Mariana los números del trimestre' }, notas: 'Lo que toca dinero de Nodo siempre te lo pregunto.', actualizada: '2026-10-20' }),
-    F('f-mariana', 'persona', 'Mariana Ortiz', { direcciones: ['mariana@nodo.mx'], organizacion: 'f-nodo', rol: 'Fundadora', relacion: 'Inversión', importancia: 'alta', temas_abiertos: ['Números del trimestre', 'Hoja de términos de la Serie A'],
+    F('f-tomas', 'persona', 'Tomás Rivas', { direcciones: ['tomas.rivas@ejemplo.com'], organizacion: 'f-auditores', rol: 'Gerente de auditoría', relacion: 'Proveedor',
+      ultima_interaccion: { fecha: '2026-10-23', canal: 'correo', resumen: 'Mandó la lista de documentos que faltan' } }),
+    F('f-cliente', 'organizacion', 'Cliente clave', { dominios: ['cliente.ejemplo.com'], rol: 'Tu cliente más grande', relacion: 'Cliente', importancia: 'alta', temas_abiertos: ['Renovación del contrato', 'Números del trimestre'],
+      ultima_interaccion: { fecha: '2026-10-29', canal: 'correo', resumen: 'Le recordaste a Mariana los números del trimestre' }, notas: 'Lo que toca dinero con este cliente siempre te lo pregunto.', actualizada: '2026-10-20' }),
+    F('f-mariana', 'persona', 'Mariana Ortiz', { direcciones: ['mariana@cliente.ejemplo.com'], organizacion: 'f-cliente', rol: 'Directora de Compras', relacion: 'Cliente', importancia: 'alta', temas_abiertos: ['Números del trimestre', 'Renovación del contrato'],
       ultima_interaccion: { fecha: '2026-10-29', canal: 'correo', resumen: 'Le recordaste los números del trimestre' }, notas: 'Promete números y tarda; ya van dos recordatorios este trimestre.' }),
-    F('f-delta', 'organizacion', 'Imprenta Delta', { dominios: ['imprentadelta.mx'], direcciones: ['facturacion@imprentadelta.mx'], rol: 'Imprime tus materiales', relacion: 'Proveedor', temas_abiertos: ['Factura F-2291'],
-      ultima_interaccion: { fecha: '2026-10-21', canal: 'correo', resumen: 'Llegó la factura F-2291' }, notas: 'Sus facturas solo llegan de imprentadelta.mx.\nLe pagas por transferencia a la misma cuenta desde marzo.', actualizada: '2026-10-30' }),
-    F('f-ibarra', 'organizacion', 'Despacho Ibarra', { dominios: ['despachoibarra.mx'], rol: 'Despacho de abogados', relacion: 'Proveedor', temas_abiertos: ['Contrato firmado'] }),
-    F('f-juan', 'persona', 'Juan Ibarra', { direcciones: ['juan@despachoibarra.mx'], organizacion: 'f-ibarra', rol: 'Abogado', relacion: 'Proveedor', temas_abiertos: ['Contrato firmado'],
+    F('f-imprenta', 'organizacion', 'Imprenta', { dominios: ['imprenta.ejemplo.com'], direcciones: ['facturacion@imprenta.ejemplo.com'], rol: 'Imprime tus materiales', relacion: 'Proveedor', temas_abiertos: ['Factura F-2291'],
+      ultima_interaccion: { fecha: '2026-10-21', canal: 'correo', resumen: 'Llegó la factura F-2291' }, notas: 'Sus facturas solo llegan de imprenta.ejemplo.com.\nLe pagas por transferencia a la misma cuenta desde marzo.', actualizada: '2026-10-30' }),
+    F('f-abogados', 'organizacion', 'Despacho de abogados', { dominios: ['abogados.ejemplo.com'], rol: 'Lleva tus contratos', relacion: 'Proveedor', temas_abiertos: ['Contrato firmado'] }),
+    F('f-juan', 'persona', 'Juan Ibarra', { direcciones: ['juan@abogados.ejemplo.com'], organizacion: 'f-abogados', rol: 'Abogado', relacion: 'Proveedor', temas_abiertos: ['Contrato firmado'],
       ultima_interaccion: { fecha: '2026-10-27', canal: 'correo', resumen: 'Segundo recordatorio del contrato' } }),
-    F('f-sofia', 'persona', 'Sofía', { direcciones: ['sofia@oficina.mx'], chats_whatsapp: ['Sofía'], rol: 'Tu asistente', relacion: 'Equipo', importancia: 'alta', temas_abiertos: ['Junta del lunes'],
+    F('f-sofia', 'persona', 'Sofía', { direcciones: ['sofia@oficina.ejemplo.com'], chats_whatsapp: ['Sofía'], rol: 'Tu asistente', relacion: 'Equipo', importancia: 'alta', temas_abiertos: ['Junta del lunes'],
       ultima_interaccion: { fecha: T(29, '19:10'), canal: 'whatsapp', resumen: 'Espera tu visto bueno para mover la junta del lunes' },
       notas: 'Coordina tu agenda.\nLo que manda siempre se queda en tu bandeja.', definido_por: 'persona', actualizada: '2026-10-27' }),
-    F('f-paola', 'persona', 'Paola Ríos', { direcciones: ['paola.rios@correo.mx'], chats_whatsapp: ['Paola Ríos'], relacion: 'Amistad', temas_abiertos: ['Cena del martes'],
+    F('f-paola', 'persona', 'Paola Ríos', { direcciones: ['paola.rios@ejemplo.com'], chats_whatsapp: ['Paola Ríos'], relacion: 'Amistad', temas_abiertos: ['Cena del martes'],
       ultima_interaccion: { fecha: T(30, '09:05'), canal: 'whatsapp', resumen: 'Preguntó por la cena del martes' } }),
-    F('f-ana', 'persona', 'Ana Ruiz', { direcciones: ['ana.ruiz@correo.mx'], relacion: 'Familia', importancia: 'alta', notas: 'Firma como tu hija.', definido_por: 'persona', actualizada: '2026-10-29' }),
-    F('f-foro', 'organizacion', 'Foro Directivo', { dominios: ['forodirectivo.mx'], rol: 'Organiza foros de dirección', relacion: 'Otra', temas_abiertos: ['Panel del 12 de noviembre'] }),
-    F('f-andrea', 'persona', 'Andrea Vega', { direcciones: ['andrea@forodirectivo.mx'], organizacion: 'f-foro', rol: 'Organizadora', relacion: 'Otra', temas_abiertos: ['Panel del 12 de noviembre'],
+    F('f-ana', 'persona', 'Ana Ruiz', { direcciones: ['ana.ruiz@ejemplo.com'], relacion: 'Familia', importancia: 'alta', notas: 'Firma como tu hija.', definido_por: 'persona', actualizada: '2026-10-29' }),
+    F('f-camara', 'organizacion', 'Cámara de comercio', { dominios: ['camara.ejemplo.com'], rol: 'Organiza foros de dirección', relacion: 'Otra', temas_abiertos: ['Panel del 12 de noviembre'] }),
+    F('f-andrea', 'persona', 'Andrea Vega', { direcciones: ['andrea@camara.ejemplo.com'], organizacion: 'f-camara', rol: 'Organizadora', relacion: 'Otra', temas_abiertos: ['Panel del 12 de noviembre'],
       ultima_interaccion: { fecha: '2026-10-28', canal: 'correo', resumen: 'Te invitó al panel del 12 de noviembre' } }),
-    F('f-viajesalba', 'organizacion', 'Viajes Alba', { dominios: ['viajesalba.mx'], rol: 'Agencia de viajes', relacion: 'Proveedor' })
+    F('f-agencia', 'organizacion', 'Agencia de viajes', { dominios: ['viajes.ejemplo.com'], rol: 'Lleva tus reservaciones', relacion: 'Proveedor' })
   ];
 
   /* ---------- Hilos: lo que el motor sabe de cada correo ---------- */
   s.hilos = {};
   const hilo = (n, remitente, asunto, fecha, x) => { s.hilos[H16(n)] = Object.assign({ id_hilo: H16(n), remitente: remitente, asunto: asunto, fecha: fecha }, x || {}); return H16(n); };
-  hilo(95, 'Congreso Directivo <encuestas@congresodirectivo.mx>', 'Encuesta del congreso de octubre', T(29, '16:00'));
+  hilo(95, 'Congreso de la industria <encuestas@congreso.ejemplo.com>', 'Encuesta del congreso de octubre', T(29, '16:00'));
   hilo(94, 'Telcel <facturas@telcel.com>', 'Tu factura de octubre: $4,870', T(30, '07:05'));
-  hilo(4, 'Imprenta Delta <facturacion@imprenta-delta.co>', 'Cambio de cuenta para pagar la factura F-2291', T(30, '08:12'), { suplantacion: true });
-  hilo(1, 'Laura Méndez <laura@estudiofaro.mx>', 'Grabación del jueves', T(30, '09:52'));
-  hilo(2, 'Bruno Salas <bruno.salas@altavista.mx>', 'Voto del presupuesto 2027', T(30, '07:30'));
-  hilo(3, 'Mariana Ortiz <mariana@nodo.mx>', 'Hoja de términos de la Serie A', T(29, '18:20'));
-  hilo(5, 'Andrea Vega <andrea@forodirectivo.mx>', 'Panel del 12 de noviembre', T(30, '08:55'));
-  hilo(6, 'Medium <noreply@medium.com>', 'Cómo negociar una Serie A', T(30, '06:00'));
-  hilo(11, 'Paola Ríos <paola.rios@correo.mx>', 'Cena del martes', T(30, '09:05'));
-  hilo(12, 'Bruno Salas <bruno.salas@altavista.mx>', 'Flujo del trimestre', T(26, '10:00'));
-  hilo(13, 'Sofía <sofia@oficina.mx>', 'Cambios de la agenda del lunes', T(30, '08:10'));
-  hilo(21, 'Mariana Ortiz <mariana@nodo.mx>', 'Números del trimestre', T(28, '12:00'));
-  hilo(23, 'Juan Ibarra <juan@despachoibarra.mx>', 'Contrato firmado', T(21, '11:00'));
-  hilo(31, 'Laura Méndez <laura@estudiofaro.mx>', 'Guion revisado', T(27, '16:00'));
-  hilo(41, 'Ana Ruiz <ana.ruiz@correo.mx>', '¿Me recoges el viernes?', T(22, '13:10'));
-  hilo(42, 'Ana Ruiz <ana.ruiz@correo.mx>', 'Foto del viaje', T(19, '21:40'));
-  hilo(43, 'Ana Ruiz <ana.ruiz@correo.mx>', 'Firma del permiso de la excursión', T(16, '07:50'));
-  hilo(51, 'Rutas Express <avisos@rutasexpress.mx>', 'Tu paquete va en camino', T(30, '07:12'));
+  hilo(4, 'Imprenta <facturacion@imprenta-ejemplo.co>', 'Cambio de cuenta para pagar la factura F-2291', T(30, '08:12'), { suplantacion: true });
+  hilo(1, 'Laura Méndez <laura@auditores.ejemplo.com>', 'Junta del jueves', T(30, '09:52'));
+  hilo(2, 'Bruno Salas <bruno.salas@consejo.ejemplo.com>', 'Voto del presupuesto 2027', T(30, '07:30'));
+  hilo(3, 'Mariana Ortiz <mariana@cliente.ejemplo.com>', 'Renovación del contrato', T(29, '18:20'));
+  hilo(5, 'Andrea Vega <andrea@camara.ejemplo.com>', 'Panel del 12 de noviembre', T(30, '08:55'));
+  hilo(6, 'Medium <noreply@medium.com>', 'Cómo negociar una renovación', T(30, '06:00'));
+  hilo(11, 'Paola Ríos <paola.rios@ejemplo.com>', 'Cena del martes', T(30, '09:05'));
+  hilo(12, 'Bruno Salas <bruno.salas@consejo.ejemplo.com>', 'Flujo del trimestre', T(26, '10:00'));
+  hilo(13, 'Sofía <sofia@oficina.ejemplo.com>', 'Cambios de la agenda del lunes', T(30, '08:10'));
+  hilo(21, 'Mariana Ortiz <mariana@cliente.ejemplo.com>', 'Números del trimestre', T(28, '12:00'));
+  hilo(23, 'Juan Ibarra <juan@abogados.ejemplo.com>', 'Contrato firmado', T(21, '11:00'));
+  hilo(31, 'Laura Méndez <laura@auditores.ejemplo.com>', 'Informe revisado', T(27, '16:00'));
+  hilo(41, 'Ana Ruiz <ana.ruiz@ejemplo.com>', '¿Me recoges el viernes?', T(22, '13:10'));
+  hilo(42, 'Ana Ruiz <ana.ruiz@ejemplo.com>', 'Foto del viaje', T(19, '21:40'));
+  hilo(43, 'Ana Ruiz <ana.ruiz@ejemplo.com>', 'Firma del permiso de la excursión', T(16, '07:50'));
+  hilo(51, 'Paquetería <avisos@paqueteria.ejemplo.com>', 'Tu paquete va en camino', T(30, '07:12'));
   hilo(52, 'LinkedIn <notificaciones@linkedin.com>', '6 personas vieron tu perfil', T(30, '06:40'));
-  hilo(53, 'Rutas Express <avisos@rutasexpress.mx>', 'Entregado en recepción', T(29, '18:02'));
-  hilo(54, 'Agenda Digital <hola@agendadigital.app>', 'Tu resumen semanal', T(29, '08:00'));
-  hilo(61, 'Club Aurora <ofertas@clubaurora.mx>', 'Tu membresía te espera', T(29, '10:00'));
-  hilo(62, 'Club Aurora <ofertas@clubaurora.mx>', 'Última llamada: 2x1 en spa', T(28, '10:00'));
-  hilo(63, 'Club Aurora <ofertas@clubaurora.mx>', 'Nuevas clases de noviembre', T(27, '10:00'));
-  hilo(71, 'Comunidad Semilla <hola@comunidadsemilla.org>', 'Invitación: cena de fundadoras', T(20, '12:00'));
+  hilo(53, 'Paquetería <avisos@paqueteria.ejemplo.com>', 'Entregado en recepción', T(29, '18:02'));
+  hilo(54, 'App de agenda <hola@agenda.ejemplo.com>', 'Tu resumen semanal', T(29, '08:00'));
+  hilo(61, 'Gimnasio <ofertas@gimnasio.ejemplo.com>', 'Tu membresía te espera', T(29, '10:00'));
+  hilo(62, 'Gimnasio <ofertas@gimnasio.ejemplo.com>', 'Última llamada: 2x1 en spa', T(28, '10:00'));
+  hilo(63, 'Gimnasio <ofertas@gimnasio.ejemplo.com>', 'Nuevas clases de noviembre', T(27, '10:00'));
+  hilo(71, 'Asociación de egresados <hola@egresados.ejemplo.com>', 'Invitación: cena de egresados', T(20, '12:00'));
   hilo(72, 'Expansión <boletin@expansion.mx>', 'La mañana en 5 minutos', T(29, '06:00'));
-  hilo(73, 'Rutas Express <avisos@rutasexpress.mx>', 'Entregado: pedido 4471', T(24, '16:20'));
+  hilo(73, 'Paquetería <avisos@paqueteria.ejemplo.com>', 'Entregado: pedido 4471', T(24, '16:20'));
   hilo(74, 'Mercado Libre <compras@mercadolibre.com.mx>', 'Tu compra llegó', T(23, '12:30'));
-  hilo(75, 'Viajes Alba <reservaciones@viajesalba.mx>', 'Tu reservación a Mérida', T(22, '09:15'));
-  hilo(76, 'Imprenta Delta <facturacion@imprentadelta.mx>', 'Factura F-2291', T(21, '10:30'));
+  hilo(75, 'Agencia de viajes <reservaciones@viajes.ejemplo.com>', 'Tu reservación a Mérida', T(22, '09:15'));
+  hilo(76, 'Imprenta <facturacion@imprenta.ejemplo.com>', 'Factura F-2291', T(21, '10:30'));
   hilo(77, 'Liverpool <ofertas@liverpool.com.mx>', 'Venta nocturna', T(17, '19:00'));
   hilo(78, 'LinkedIn <mensajes@linkedin.com>', 'Andrea Vega te envió un mensaje', T(14, '11:05'));
   hilo(79, 'Medium <noreply@medium.com>', 'Lo que aprendí al vender mi empresa', T(12, '06:00'));
-  hilo(80, 'Herrería Solís <cotizaciones@herreriasolis.mx>', 'Cotización del barandal', T(27, '13:10'));
+  hilo(80, 'Herrería <cotizaciones@herreria.ejemplo.com>', 'Cotización del barandal', T(27, '13:10'));
   // Ejemplos de las carpetas que propone Opus: se abren en Gmail con un toque
-  hilo(81, 'Pisos del Bajío <ventas@pisosdelbajio.mx>', 'Entrega del porcelanato el martes', T(28, '11:00'));
-  hilo(82, 'Arq. Mendoza <estudio@arqmendoza.mx>', 'Avance de la semana 6', T(26, '18:30'));
-  hilo(83, 'Colegio Arboleda <avisos@colegioarboleda.edu.mx>', 'Circular: festival de invierno', T(29, '14:00'));
-  hilo(84, 'Colegio Arboleda <avisos@colegioarboleda.edu.mx>', 'Tareas de la semana, 3o B', T(27, '15:00'));
-  hilo(85, 'Colegio Arboleda <pagos@colegioarboleda.edu.mx>', 'Recordatorio de la colegiatura', T(25, '09:00'));
-  hilo(86, 'Agenda Digital <hola@agendadigital.app>', 'Tu resumen semanal', T(26, '07:00'));
+  hilo(81, 'Pisos y azulejos <ventas@pisos.ejemplo.com>', 'Entrega del porcelanato el martes', T(28, '11:00'));
+  hilo(82, 'Arquitecto de la obra <estudio@arquitecto.ejemplo.com>', 'Avance de la semana 6', T(26, '18:30'));
+  hilo(83, 'Colegio <avisos@colegio.ejemplo.com>', 'Circular: festival de invierno', T(29, '14:00'));
+  hilo(84, 'Colegio <avisos@colegio.ejemplo.com>', 'Tareas de la semana, 3o B', T(27, '15:00'));
+  hilo(85, 'Colegio <pagos@colegio.ejemplo.com>', 'Recordatorio de la colegiatura', T(25, '09:00'));
+  hilo(86, 'App de agenda <hola@agenda.ejemplo.com>', 'Tu resumen semanal', T(26, '07:00'));
   hilo(87, 'Liverpool <ofertas@liverpool.com.mx>', 'Gran barata de otoño', T(24, '19:00'));
   hilo(88, 'Mercado Libre <ofertas@mercadolibre.com.mx>', 'Ofertas de la semana', T(22, '10:00'));
   hilo(89, 'Mercado Libre <compras@mercadolibre.com.mx>', 'Tu pedido va en camino', T(21, '12:00'));
   hilo(90, 'Telcel <facturas@telcel.com>', 'Tu factura de octubre', T(20, '08:00'));
   hilo(91, 'Aeroméxico <avisos@aeromexico.com>', 'Tu pase de abordar a Mérida', T(19, '20:00'));
-  hilo(92, 'Banco del Valle <avisos@bancodelvalle.mx>', 'Tu estado de cuenta de octubre', T(18, '09:00'));
-  hilo(93, 'Banco del Valle <avisos@bancodelvalle.mx>', 'Compra con tu tarjeta por $1,240', T(23, '21:10'));
+  hilo(92, 'Tu banco <avisos@banco.ejemplo.com>', 'Tu estado de cuenta de octubre', T(18, '09:00'));
+  hilo(93, 'Tu banco <avisos@banco.ejemplo.com>', 'Compra con tu tarjeta por $1,240', T(23, '21:10'));
 
   /* ---------- Políticas ---------- */
   const P = (id, clave, nombre, texto, x) => Object.assign({ id: id, clave: clave, nombre: nombre, texto: texto, origen: 'catalogo', nivel: 'apagado', estado: 'activa',
@@ -960,12 +960,12 @@ const PRUEBA = (() => {
   };
   s.politicas = [
     P('pol-publicidad', 'publicidad', 'Publicidad', 'La publicidad va a su carpeta, ya leída.', { nivel: 'avisa',
-      compilado: { condiciones: [{ campo: 'categoria_gmail', valores: ['promociones'] }, { campo: 'dominio', valores: ['liverpool.com.mx', 'clubaurora.mx'] }], excepciones: [{ campo: 'dominio', valores: ['estudiofaro.mx'] }] },
+      compilado: { condiciones: [{ campo: 'categoria_gmail', valores: ['promociones'] }, { campo: 'dominio', valores: ['liverpool.com.mx', 'gimnasio.ejemplo.com'] }], excepciones: [{ campo: 'dominio', valores: ['auditores.ejemplo.com'] }] },
       acciones: ['carpeta:Promociones', 'leido'], metricas: M(214, T(30, '09:41'), 208, 1, 0, 3), prueba: { dias: 14, casos: 96, ejemplos: [H16(77)], resultado: 'Habría movido 96 correos; abriste 1.' } }),
     P('pol-boletines', 'boletines', 'Boletines', 'Los boletines van a su carpeta, ya leídos.', { nivel: 'avisa', acciones: ['carpeta:Lecturas del fin de semana', 'leido'], metricas: M(82, T(30, '07:55'), 80, 0, 0, 1) }),
     P('pol-notificaciones', 'notificaciones', 'Notificaciones', 'Los avisos de apps y tiendas van a su carpeta, ya leídos.', { nivel: 'propone', acciones: ['carpeta:Avisos de apps', 'leido'], metricas: M(20, T(30, '07:10'), 20, 0, 0, 0) }),
     P('pol-carpetas', 'carpetas', 'Carpetas por tema', 'Proveedores de la obra, Colegio de los niños y Facturas, cada una a su carpeta.', { nivel: 'avisa', acciones: ['carpeta:Proveedores de la obra', 'carpeta:Colegio de los niños', 'carpeta:Facturas'], metricas: M(41, T(29, '16:30'), 39, 2, 0, 0),
-      criterio: 'Una factura es un correo con CFDI o con monto a pagar. Las de Altavista se quedan en la bandeja.' }),
+      criterio: 'Una factura es un correo con CFDI o con monto a pagar. Las del consejo se quedan en la bandeja.' }),
     P('pol-papelera', 'papelera', 'Papelera', 'Lo que siempre borras sin abrir va a la papelera.', { acciones: ['papelera'] }),
     P('pol-spam', 'spam', 'Spam', 'Lo sospechoso o sin baja legítima va a spam. También le enseña al filtro de Gmail.', { nivel: 'avisa', acciones: ['spam'], metricas: M(21, T(30, '05:20'), 21, 0, 0, 0) }),
     P('pol-bajas', 'bajas', 'Bajas', 'Opus da de baja de lo que nunca abres, solo con baja de un clic y nunca a un remitente nuevo o sospechoso. Lo que siga llegando en 14 días va a la papelera.', { nivel: 'propone', acciones: ['desuscribir'], metricas: M(2, T(30, '06:30'), 2, 0, 0, 0) }),
@@ -980,13 +980,13 @@ const PRUEBA = (() => {
     P('pol-autonomia', 'autonomia', 'Autonomía', 'Te propongo darle más o menos libertad a cada regla con datos.', { nivel: 'propone', cuando: 'diario', metricas: M(1, T(30, '07:00'), 0, 0, 0, 0) }),
     P('pol-whatsapp', 'whatsapp', 'WhatsApp', 'Te resumo lo que necesita respuesta y te dejo la respuesta escrita, sin enviar.', { nivel: 'propone', cuando: 'cada_hora', metricas: M(18, T(30, '09:30'), 15, 3, 0, 0) }),
     P('pol-facturas', null, 'Facturas que vencen', 'Las facturas a Facturas y recuérdame las que vencen.', { origen: 'persona', nivel: 'avisa', acciones: ['carpeta:Facturas', 'aviso_en_hoy'],
-      compilado: { condiciones: [{ campo: 'consulta', valores: ['subject:factura -from:altavista.mx'] }], excepciones: [] }, criterio: 'Avisa tres días antes de la fecha de pago que trae la factura.',
+      compilado: { condiciones: [{ campo: 'consulta', valores: ['subject:factura -from:consejo.ejemplo.com'] }], excepciones: [] }, criterio: 'Avisa tres días antes de la fecha de pago que trae la factura.',
       metricas: M(11, T(29, '16:30'), 11, 0, 0, 0), creada: '2026-10-26', prueba: { dias: 14, casos: 11, ejemplos: [H16(76)], resultado: 'Habría ordenado 11 facturas.' } }),
     P('pol-hija', null, 'Mi hija', 'Si me escribe mi hija, avísame siempre.', { origen: 'persona', nivel: 'avisa', estado: 'activa', acciones: ['importante', 'aviso_en_hoy'],
-      compilado: { condiciones: [{ campo: 'remitente', valores: ['ana.ruiz@correo.mx'] }], excepciones: [] }, creada: '2026-10-29',
+      compilado: { condiciones: [{ campo: 'remitente', valores: ['ana.ruiz@ejemplo.com'] }], excepciones: [] }, creada: '2026-10-29',
       prueba: { dias: 14, casos: 6, ejemplos: [H16(41), H16(42), H16(43)], resultado: 'Cada correo de Ana Ruiz saldría primero en Hoy.' } }),
     P('pol-consejo', null, 'Pendientes del consejo', 'Los viernes dime qué quedó pendiente del consejo.', { origen: 'persona', nivel: 'avisa', estado: 'pausada', cuando: 'horario:0 9 * * 5',
-      criterio: 'Junta lo abierto con Altavista: votos, documentos y respuestas que esperan.', metricas: M(2, T(23, '09:00'), 2, 0, 0, 0), creada: '2026-10-21' })
+      criterio: 'Junta lo abierto con el consejo: votos, documentos y respuestas que esperan.', metricas: M(2, T(23, '09:00'), 2, 0, 0, 0), creada: '2026-10-21' })
   ];
   if (PARAMS.has('basico')) s.politicas.forEach(p => { if (['respuestas', 'seguimiento', 'compromisos', 'proteccion', 'personas', 'juntas', 'autonomia', 'whatsapp'].indexOf(p.clave) >= 0) p.nivel = 'apagado'; });
 
@@ -995,13 +995,13 @@ const PRUEBA = (() => {
     // Como el motor: la decisión del plan sobre cómo se entera vive en decisiones.enterarse
     automatico: { decisiones: { enterarse: 'automatico' } },
     propias: { orden_hoy: ['resumen', 'te_necesita', 'decidir', 'whatsapp', 'agenda', 'repaso', 'avisos', 'listos'],
-      secciones_propias: [{ titulo: 'Lo del podcast', filtro: { ficha: 'f-faro' } }], resumen: { momentos: ['07:30'], largo: 'corto' }, tono: 'directo' },
+      secciones_propias: [{ titulo: 'Lo de la auditoría', filtro: { ficha: 'f-auditores' } }], resumen: { momentos: ['07:30'], largo: 'corto' }, tono: 'directo' },
     agenda: { orden_hoy: ['agenda', 'te_necesita', 'decidir', 'resumen', 'whatsapp', 'listos', 'repaso'],
       textos: { agenda: 'Tu día', te_necesita: 'Antes de tus juntas', decidir: 'Para tu sí', resumen: 'En corto', whatsapp: 'WhatsApp', listos: 'Respuestas listas' },
       resumen: { momentos: ['07:30'], largo: 'corto' }, horarios_juicio: ['07:00', '11:00', '15:00'], tono: 'directo' },
     // Como la que escribe Opus: nombres propios para las secciones y sus secciones propias en el orden
     opus: { orden_hoy: ['riesgo', 'pide_algo', 'facturas_por_reenviar', 'colegio', 'compromisos', 'lo_que_movi', 'preguntas', 'whatsapp'],
-      secciones_propias: [{ titulo: 'Lo del podcast', filtro: { ficha: 'f-faro' } }],
+      secciones_propias: [{ titulo: 'Lo de la auditoría', filtro: { ficha: 'f-auditores' } }],
       textos: { pide_algo: 'Te piden algo', compromisos: 'Pendientes', lo_que_movi: 'Lo que ordené', preguntas: 'Para decidir' },
       resumen: { momentos: ['08:45'], largo: 'corto' }, horarios_juicio: { entre_semana: ['08:45', '14:45', '19:45'], fin_de_semana: ['08:30', '18:30'] } },
     proveedores: { orden_hoy: ['resumen', 'te_necesita', 'avisos', 'decidir', 'listos', 'repaso'],
@@ -1012,15 +1012,15 @@ const PRUEBA = (() => {
   // Como el motor: entradas separadas y el mismo cuaderno en Markdown
   const E = (id, fecha, seccion, texto, evidencia, cambio, deshacer) => ({ id: id, fecha: fecha, seccion: seccion, texto: texto, evidencia: evidencia || '', cambio: cambio || '', deshacer: deshacer || '' });
   const entradas = [
-    E('c8', '2026-10-30', 'aprendi', 'Laura Méndez prefiere grabar antes de mediodía', 'le propusiste tres horarios y eligió los tres antes de las 12.', 'ficha:f-laura', 'a33'),
-    E('c7', '2026-10-30', 'aprendi', 'Las facturas de Imprenta Delta solo llegan de imprentadelta.mx', '14 facturas en un año, todas de ese dominio. Por eso la de imprenta-delta.co salió como riesgo.', 'ficha:f-delta', 'a30'),
-    E('c3', '2026-10-25', 'aprendi', 'Lo de Altavista siempre te lo pregunto: es consejo', 'contestas tú cada correo del consejo, casi siempre el mismo día.', 'politica:pol-respuestas', 'a20'),
+    E('c8', '2026-10-30', 'aprendi', 'Laura Méndez prefiere reunirse antes de mediodía', 'le propusiste tres horarios y eligió los tres antes de las 12.', 'ficha:f-laura', 'a33'),
+    E('c7', '2026-10-30', 'aprendi', 'Las facturas de la imprenta solo llegan de imprenta.ejemplo.com', '14 facturas en un año, todas de ese dominio. Por eso la de imprenta-ejemplo.co salió como riesgo.', 'ficha:f-imprenta', 'a30'),
+    E('c3', '2026-10-25', 'aprendi', 'Lo del consejo siempre te lo pregunto', 'contestas tú cada correo del consejo, casi siempre el mismo día.', 'politica:pol-respuestas', 'a20'),
     E('c2', '2026-10-25', 'aprendi', 'A Sofía le contestas en una línea', 'corregiste 4 borradores para ella y los dejaste de una línea.', 'estilo', 'a18'),
-    E('c6', '2026-10-28', 'me_corrigio', 'Las facturas de Imprenta Delta van a Facturas', 'sacaste dos de Proveedores de la obra.', 'politica:pol-carpetas', 'a19'),
-    E('c5', '2026-10-27', 'me_corrigio', 'Andrea Vega es del Foro Directivo, no de LinkedIn', 'lo cambiaste en su hoja.', 'ficha:f-andrea'),
-    E('c1', '2026-10-24', 'me_corrigio', 'El presupuesto de Altavista lo contestas tú', 'me lo dijiste en Claude.', 'perfil'),
-    E('c9', '', 'no_se', 'Si Comunidad Semilla te importa o solo sus invitaciones.'),
-    E('c10', '', 'no_se', 'Si Lucía Herrera es del consejo o del equipo de Altavista.'),
+    E('c6', '2026-10-28', 'me_corrigio', 'Las facturas de la imprenta van a Facturas', 'sacaste dos de Proveedores de la obra.', 'politica:pol-carpetas', 'a19'),
+    E('c5', '2026-10-27', 'me_corrigio', 'Andrea Vega es de la Cámara de comercio, no de LinkedIn', 'lo cambiaste en su hoja.', 'ficha:f-andrea'),
+    E('c1', '2026-10-24', 'me_corrigio', 'El presupuesto del consejo lo contestas tú', 'me lo dijiste en Claude.', 'perfil'),
+    E('c9', '', 'no_se', 'Si la asociación de egresados te importa o solo sus invitaciones.'),
+    E('c10', '', 'no_se', 'Si Lucía Herrera es del consejo o del equipo de Bruno.'),
     E('c11', '', 'no_se', 'A qué hora quieres tu resumen los fines de semana.')];
   const TITULO_CUADERNO = { aprendi: 'Aprendí', me_corrigio: 'Me corrigió', no_se: 'No sé' };
   const vineta = e => '- ' + (e.fecha ? e.fecha + ': ' : '') + e.texto + (e.evidencia || e.cambio || e.deshacer
@@ -1030,9 +1030,9 @@ const PRUEBA = (() => {
 
   /* ---------- Hechos ---------- */
   s.juicios = [
-    { id_hilo: H16(4), prioridad: 'riesgo', recomendacion: 'No pagues sin confirmar por teléfono.', motivo: 'Pide pagar a una cuenta nueva y llega de imprenta-delta.co. Sus facturas siempre llegan de imprentadelta.mx.',
+    { id_hilo: H16(4), prioridad: 'riesgo', recomendacion: 'No pagues sin confirmar por teléfono.', motivo: 'Pide pagar a una cuenta nueva y llega de imprenta-ejemplo.co. Sus facturas siempre llegan de imprenta.ejemplo.com.',
       politica: 'pol-proteccion', confianza: 0.93, vence: null, sensible: 'dinero', opciones: [], fecha: T(30, '08:20') },
-    { id_hilo: H16(1), prioridad: 'alta', recomendacion: 'Laura pide confirmar el horario. Confirma las 11:00: está libre y no choca con nada.', motivo: 'Graba el jueves y espera tu respuesta hoy.',
+    { id_hilo: H16(1), prioridad: 'alta', recomendacion: 'Laura pide confirmar el horario. Confirma las 11:00: está libre y no choca con nada.', motivo: 'La junta es el jueves y espera tu respuesta hoy.',
       politica: 'pol-respuestas', confianza: 0.86, vence: T(30, '13:00'), sensible: null, fecha: T(30, '09:55'), sin_leer: true, resumen_completo: true, opciones: [
         { etiqueta: 'Confirmar 11:00', accion: 'borrador', texto: 'Laura, confirmo el jueves a las 11:00. Gracias.', recomendada: true },
         { etiqueta: 'Viernes 10:00', accion: 'borrador', texto: 'Laura, ¿podemos moverla al viernes a las 10:00? Gracias.' },
@@ -1054,51 +1054,51 @@ const PRUEBA = (() => {
   ];
   s.borradores = [
     // Con id_accion, Descartar es el Deshacer del borrador que dejó el motor
-    { id_hilo: H16(11), para: 'Paola Ríos <paola.rios@correo.mx>', asunto: 'Cena del martes', creado: T(30, '10:12'), politica: 'pol-respuestas', id_accion: 'borrador:11', id_borrador: 'r11', texto: 'Paola, el martes a las 8 me queda bien. Ahí nos vemos.' },
-    { id_hilo: H16(12), para: 'Bruno Salas <bruno.salas@altavista.mx>', asunto: 'Recordatorio del flujo', creado: T(30, '09:12'), politica: 'pol-seguimiento', id_accion: 'borrador:12', id_borrador: 'r12', texto: 'Bruno, te recuerdo el flujo del trimestre para el viernes. Gracias.' },
-    { id_hilo: H16(13), para: 'Sofía <sofia@oficina.mx>', asunto: 'Cambios de la agenda del lunes', creado: T(30, '08:30'), politica: 'pol-respuestas' }
+    { id_hilo: H16(11), para: 'Paola Ríos <paola.rios@ejemplo.com>', asunto: 'Cena del martes', creado: T(30, '10:12'), politica: 'pol-respuestas', id_accion: 'borrador:11', id_borrador: 'r11', texto: 'Paola, el martes a las 8 me queda bien. Ahí nos vemos.' },
+    { id_hilo: H16(12), para: 'Bruno Salas <bruno.salas@consejo.ejemplo.com>', asunto: 'Recordatorio del flujo', creado: T(30, '09:12'), politica: 'pol-seguimiento', id_accion: 'borrador:12', id_borrador: 'r12', texto: 'Bruno, te recuerdo el flujo del trimestre para el viernes. Gracias.' },
+    { id_hilo: H16(13), para: 'Sofía <sofia@oficina.ejemplo.com>', asunto: 'Cambios de la agenda del lunes', creado: T(30, '08:30'), politica: 'pol-respuestas' }
   ];
   s.seguimientos = [
     { id: 's1', id_hilo: H16(21), canal: 'correo', direccion: 'le_deben', que: 'Números del trimestre', vence: '2026-11-02', politica: 'pol-seguimiento', estado: 'abierto', motivo_cierre: null,
-      con: 'Mariana Ortiz <mariana@nodo.mx>', ficha: 'f-mariana', desde: '2026-10-28', origen: { canal: 'correo', fecha: '2026-10-28' }, recordatorios: 1, ultimo_recordatorio: '2026-10-29',
+      con: 'Mariana Ortiz <mariana@cliente.ejemplo.com>', ficha: 'f-mariana', desde: '2026-10-28', origen: { canal: 'correo', fecha: '2026-10-28' }, recordatorios: 1, ultimo_recordatorio: '2026-10-29',
       recordatorio: 'Mariana, ¿me compartes los números del trimestre antes de la llamada de hoy? Gracias.' },
     { id: 's2', id_hilo: H16(12), canal: 'correo', direccion: 'le_deben', que: 'Flujo del trimestre', vence: '2026-11-03', politica: 'pol-seguimiento', estado: 'abierto', motivo_cierre: null,
-      con: 'Bruno Salas <bruno.salas@altavista.mx>', ficha: 'f-bruno', desde: '2026-10-26', recordatorios: 0, recordatorio_listo: true },
+      con: 'Bruno Salas <bruno.salas@consejo.ejemplo.com>', ficha: 'f-bruno', desde: '2026-10-26', recordatorios: 0, recordatorio_listo: true },
     { id: 's3', id_hilo: H16(23), canal: 'correo', direccion: 'le_deben', que: 'Contrato firmado', vence: null, politica: 'pol-seguimiento', estado: 'abierto', motivo_cierre: null,
-      con: 'Juan Ibarra <juan@despachoibarra.mx>', ficha: 'f-juan', desde: '2026-10-21', recordatorios: 2, ultimo_recordatorio: '2026-10-27', decide: true,
+      con: 'Juan Ibarra <juan@abogados.ejemplo.com>', ficha: 'f-juan', desde: '2026-10-21', recordatorios: 2, ultimo_recordatorio: '2026-10-27', decide: true,
       recordatorio: 'Juan, ¿pudiste firmar el contrato? Quedo pendiente.' },
     { id: 's4', chat: 'Paola Ríos', canal: 'whatsapp', direccion: 'debe_la_persona', que: 'Confirmar la cena del martes', vence: '2026-10-31', politica: 'pol-compromisos', estado: 'abierto', motivo_cierre: null,
       con: 'Paola Ríos', ficha: 'f-paola', origen: { canal: 'whatsapp', fecha: '2026-10-30' } },
     { id: 's5', id_hilo: H16(2), canal: 'correo', direccion: 'debe_la_persona', que: 'Tu voto del presupuesto', vence: '2026-10-30', politica: 'pol-compromisos', estado: 'abierto', motivo_cierre: null,
-      con: 'Grupo Altavista', ficha: 'f-altavista', nota: 'Se lo dijiste a Bruno el martes' },
-    { id: 's6', id_hilo: H16(31), canal: 'correo', direccion: 'debe_la_persona', que: 'Guion revisado', vence: '2026-11-05', politica: 'pol-compromisos', estado: 'abierto', motivo_cierre: null,
-      con: 'Laura Méndez <laura@estudiofaro.mx>', ficha: 'f-laura', origen: { canal: 'correo', fecha: '2026-10-27' }, nota: 'para antes de la grabación', proxima_revision: '2026-11-03 08:00' }
+      con: 'Consejo', ficha: 'f-consejo', nota: 'Se lo dijiste a Bruno el martes' },
+    { id: 's6', id_hilo: H16(31), canal: 'correo', direccion: 'debe_la_persona', que: 'Informe revisado', vence: '2026-11-05', politica: 'pol-compromisos', estado: 'abierto', motivo_cierre: null,
+      con: 'Laura Méndez <laura@auditores.ejemplo.com>', ficha: 'f-laura', origen: { canal: 'correo', fecha: '2026-10-27' }, nota: 'para antes de la junta', proxima_revision: '2026-11-03 08:00' }
   ];
   const A = (id, hora, texto, politica, actor, x) => Object.assign({ id: id, hora: hora, texto: texto, politica: politica, actor: actor, deshacer: id }, x || {});
   s.actividad = [
     A('a34', T(30, '10:25'), 'Facturas: guardé 2 en Facturas. La de Telcel vence el lunes.', 'pol-facturas', 'motor', { aviso: true, correos: 2, objeto: 'pol-facturas' }),
-    A('a33', T(30, '10:20'), 'Aprendí algo de Laura Méndez: prefiere grabar antes de mediodía', 'pol-personas', 'opus', { ficha: 'f-laura', objeto: 'f-laura' }),
+    A('a33', T(30, '10:20'), 'Aprendí algo de Laura Méndez: prefiere reunirse antes de mediodía', 'pol-personas', 'opus', { ficha: 'f-laura', objeto: 'f-laura' }),
     A('a32', T(30, '10:12'), 'Escribí tu respuesta a Paola en su hilo', 'pol-respuestas', 'opus', { id_hilo: H16(11), objeto: H16(11) }),
     A('a31', T(30, '09:41'), 'Publicidad: moví 38 correos a Promociones.', 'pol-publicidad', 'motor', { aviso: true, correos: 38, objeto: 'pol-publicidad' }),
     A('a38', T(30, '10:40'), 'Mi hija: la apliqué en «Te aviso», como pediste. Lo que te escriba Ana sale primero en Hoy.', 'pol-hija', 'opus', { aviso: true, objeto: 'pol-hija' }),
     A('a37', T(30, '06:00'), 'Caducidad: quité de Hoy 3 opcionales que no tocaste en 72 horas. Siguen en Gmail.', null, 'opus', { correos: 3 }),
     A('a36', T(30, '10:30'), 'Bandeja limpia: archivé 14 que ya leíste y no te piden nada.', 'bandeja_limpia', 'motor', { aviso: true, correos: 14, objeto: 'bandeja_limpia' }),
     A('a35', T(30, '09:35'), 'Protección: mandé 3 correos de fraude a spam. Paquetería retenida, un premio y «verifica tu cuenta».', 'pol-proteccion', 'motor', { aviso: true, correos: 3, objeto: 'pol-proteccion' }),
-    A('a30', T(30, '09:31'), 'Aprendí algo de Imprenta Delta: sus facturas solo llegan de imprentadelta.mx', 'pol-personas', 'opus', { ficha: 'f-delta' }),
+    A('a30', T(30, '09:31'), 'Aprendí algo de la imprenta: sus facturas solo llegan de imprenta.ejemplo.com', 'pol-personas', 'opus', { ficha: 'f-imprenta' }),
     A('a29', T(30, '09:12'), 'Seguimiento: dejé un recordatorio para Bruno en su hilo.', 'pol-seguimiento', 'opus', { aviso: true, id_hilo: H16(12), objeto: H16(12) }),
     A('a28', T(30, '07:55'), 'Boletines: moví 1 de Expansión a Lecturas del fin de semana.', 'pol-boletines', 'motor', { aviso: true, correos: 1, objeto: 'pol-boletines' }),
-    A('a27', T(30, '06:30'), 'Te di de baja de Ofertas Vuelo Bajo', 'pol-bajas', 'motor', { deshacer: null }),
+    A('a27', T(30, '06:30'), 'Te di de baja de las ofertas de vuelos', 'pol-bajas', 'motor', { deshacer: null }),
     A('a26', T(29, '17:20'), 'Encendiste Carpetas por tema en «Te aviso»', 'pol-carpetas', 'persona'),
     A('a25', T(29, '09:35'), 'Moví 116 correos de publicidad, boletines y avisos', 'pol-publicidad', 'motor', { correos: 116 }),
     A('a24', T(28, '09:30'), 'Moví 94 correos de publicidad y boletines', 'pol-publicidad', 'motor', { correos: 94 }),
-    A('a20', T(25, '20:00'), 'Aprendí que lo de Altavista siempre te lo pregunto: es consejo', 'pol-personas', 'opus', { ficha: 'f-altavista' }),
-    A('a19', T(25, '20:00'), 'Agregué las facturas de Imprenta Delta a Facturas', 'pol-carpetas', 'opus'),
+    A('a20', T(25, '20:00'), 'Aprendí que lo del consejo siempre te lo pregunto', 'pol-personas', 'opus', { ficha: 'f-consejo' }),
+    A('a19', T(25, '20:00'), 'Agregué las facturas de la imprenta a Facturas', 'pol-carpetas', 'opus'),
     A('a18', T(25, '20:00'), 'Aprendí que a Sofía le contestas en una línea', 'pol-respuestas', 'opus')
   ];
   // ?bajas=avisa: Bajas en «Te aviso» y una baja dada sin preguntar, sin Deshacer, como la anota el motor
   if (PARAMS.get('bajas') === 'avisa') {
     s.politicas.find(p => p.id === 'pol-bajas').nivel = 'avisa';
-    s.actividad.unshift(A('a40', T(30, '10:20'), 'Me di de baja de ofertas@ofertasvuelobajo.com (baja de un clic). Lo que siga llegando en 14 días va a la papelera.', 'pol-bajas', 'motor', { aviso: true, deshacer: null }));
+    s.actividad.unshift(A('a40', T(30, '10:20'), 'Me di de baja de ofertas@vuelos.ejemplo.com (baja de un clic). Lo que siga llegando en 14 días va a la papelera.', 'pol-bajas', 'motor', { aviso: true, deshacer: null }));
   }
   s.senales = [];
   s.conflictos = [{ fecha: T(29, '16:30'), id_hilo: H16(76), politicas: ['pol-carpetas', 'pol-facturas'], gano: 'pol-facturas', motivo: 'condición más específica' }];
@@ -1110,7 +1110,7 @@ const PRUEBA = (() => {
   };
   s.whatsapp = { hora_lectura: T(30, '09:30'), ultimo_intento: { hora: T(30, '09:30'), estado: 'ok' }, chats: [
     { chat: 'Paola Ríos', es_grupo: false, no_leidos: 2, ultimo_mensaje_fecha: T(30, '09:05'), resumen: 'Pregunta si sigue en pie la cena del martes.', necesita_respuesta: true, compromiso: 'Confirmar la cena del martes' },
-    { chat: 'Consejo Altavista', es_grupo: true, no_leidos: 5, ultimo_mensaje_fecha: T(30, '08:40'), resumen: 'Bruno pide confirmar quién llega en persona a la sesión.', necesita_respuesta: true, compromiso: null },
+    { chat: 'Consejo', es_grupo: true, no_leidos: 5, ultimo_mensaje_fecha: T(30, '08:40'), resumen: 'Bruno pide confirmar quién llega en persona a la sesión.', necesita_respuesta: true, compromiso: null },
     { chat: 'Sofía', es_grupo: false, no_leidos: 1, ultimo_mensaje_fecha: T(29, '19:10'), resumen: 'Espera tu visto bueno para mover la junta del lunes.', necesita_respuesta: true, compromiso: null },
     { chat: 'Familia', es_grupo: true, no_leidos: 12, ultimo_mensaje_fecha: T(30, '10:02'), resumen: 'Fotos de la comida del domingo.', necesita_respuesta: false, compromiso: null }] };
   const fallaWa = PARAMS.get('wa');
@@ -1118,8 +1118,8 @@ const PRUEBA = (() => {
   if (PARAMS.has('sinwhatsapp')) s.whatsapp = { hora_lectura: T(29, '18:10'), ultimo_intento: { hora: T(30, '10:30'), estado: 'sin_chrome' }, chats: [] };
   s.agenda = [
     { id: 'ev-sofia', inicio: T(30, '09:00'), fin: T(30, '09:30'), titulo: 'Revisión con Sofía', preparacion: 'Mover la junta del lunes. Espera tu visto bueno.' },
-    { id: 'ev-consejo', inicio: T(30, '12:00'), fin: T(30, '13:30'), titulo: 'Consejo de Altavista', preparacion: 'Se vota el presupuesto 2027. Bruno propone aprobarlo con revisión en junio.' },
-    { id: 'ev-nodo', inicio: T(30, '17:00'), fin: T(30, '17:45'), titulo: 'Llamada con Nodo', preparacion: 'Faltan los números del trimestre. Sin ellos, no firmes.' }
+    { id: 'ev-consejo', inicio: T(30, '12:00'), fin: T(30, '13:30'), titulo: 'Sesión del consejo', preparacion: 'Se vota el presupuesto 2027. Bruno propone aprobarlo con revisión en junio.' },
+    { id: 'ev-cliente', inicio: T(30, '17:00'), fin: T(30, '17:45'), titulo: 'Llamada con tu cliente más grande', preparacion: 'Faltan los números del trimestre. Sin ellos, no firmes.' }
   ];
 
   /* ---------- Conversación ---------- */
@@ -1128,29 +1128,29 @@ const PRUEBA = (() => {
     origen: 'opus', objeto: null, estado: 'abierta', respuesta: null, creada: T(30, '07:00'), vence: '2026-11-06' }, x);
   s.propuestas = [
     Q('pr-notif', 'politica', { objeto: 'pol-notificaciones', origen: 'motor', texto: 'Notificaciones: 17 avisos listos para Avisos de apps.',
-      evidencia: { cifra: 17, texto: 'LinkedIn, Rutas Express y Agenda Digital. Ninguno espera respuesta.', ejemplos: [H16(51), H16(52), H16(53), H16(54)] }, opciones: [O('aplicar', 'Moverlos', { aplicar: { politicas: ['pol-notificaciones'] } }), O('no', 'Ahora no')], recomendada: 'aplicar' }),
-    Q('pr-papelera', 'politica', { objeto: 'pol-papelera', texto: 'Club Aurora a la papelera: borraste 9 sin abrir.',
+      evidencia: { cifra: 17, texto: 'LinkedIn, la paquetería y la app de agenda. Ninguno espera respuesta.', ejemplos: [H16(51), H16(52), H16(53), H16(54)] }, opciones: [O('aplicar', 'Moverlos', { aplicar: { politicas: ['pol-notificaciones'] } }), O('no', 'Ahora no')], recomendada: 'aplicar' }),
+    Q('pr-papelera', 'politica', { objeto: 'pol-papelera', texto: 'Lo del gimnasio a la papelera: borraste 9 sin abrir.',
       evidencia: { cifra: 9, texto: 'Esta semana borraste sin abrir sus 9 correos. Se recuperan durante 30 días.', ejemplos: [H16(61), H16(62), H16(63)] }, opciones: [O('si', 'Sí, a la papelera', { cambiar_politica: { id: 'pol-papelera', nivel: 'avisa' } }), O('no', 'No')], recomendada: 'si', confianza: 0.9 }),
     Q('pr-autonomia', 'nivel', { objeto: 'pol-notificaciones', texto: 'Notificaciones: ¿las muevo yo y te aviso?',
       evidencia: { cifra: 20, texto: 'Aceptaste 20 de 20 en 6 días distintos. Quedan en Actividad, con deshacer.' }, opciones: [O('avisa', 'Sí, que me avise', { cambiar_politica: { id: 'pol-notificaciones', nivel: 'avisa' } }), O('no', 'Déjalo así')], recomendada: 'avisa' }),
     // Lo que pide la persona ya es su sí: Opus lo aplica y queda la línea con Deshacer, no una propuesta
-    Q('pr-q1', 'pregunta', { objeto: 'pol-boletines', texto: '¿Comunidad Semilla te importa?', confianza: 0.55,
-      evidencia: { texto: 'Abriste 2 de 20, pero una era la invitación a la cena de fundadoras.', ejemplos: [H16(71)] },
+    Q('pr-q1', 'pregunta', { objeto: 'pol-boletines', texto: '¿La asociación de egresados te importa?', confianza: 0.55,
+      evidencia: { texto: 'Abriste 2 de 20, pero una era la invitación a la cena de egresados.', ejemplos: [H16(71)] },
       opciones: [O('bandeja', 'Sí, en mi bandeja'), O('invitaciones', 'Solo las invitaciones'), O('boletines', 'No, a Boletines')], recomendada: 'invitaciones' }),
-    Q('pr-q2', 'pregunta', { objeto: 'f-lucia', texto: '¿Lucía Herrera es del consejo o de su equipo?', confianza: 0.48,
-      evidencia: { texto: 'Firma como secretaria del consejo, pero te escribe de facturas.' }, opciones: [O('consejo', 'Del consejo'), O('equipo', 'De su equipo')] }),
-    Q('pr-q3', 'pregunta', { objeto: 'f-viajesalba', texto: '¿Viajes Alba es tu agencia o publicidad?', confianza: 0.61,
+    Q('pr-q2', 'pregunta', { objeto: 'f-lucia', texto: '¿Lucía Herrera es del consejo o del equipo de Bruno?', confianza: 0.48,
+      evidencia: { texto: 'Firma como secretaria del consejo, pero te escribe de facturas.' }, opciones: [O('consejo', 'Del consejo'), O('equipo', 'Del equipo de Bruno')] }),
+    Q('pr-q3', 'pregunta', { objeto: 'f-agencia', texto: '¿La agencia de viajes es la tuya o es publicidad?', confianza: 0.61,
       evidencia: { texto: 'Te manda tus reservaciones y también ofertas.' }, opciones: [O('agencia', 'Mi agencia'), O('publicidad', 'Publicidad')] }),
     Q('pr-repaso', 'repaso', { lote: 'semana-2026-43', creada: T(25, '20:00'), vence: '2026-11-01', texto: 'Esta semana moví 52 correos. Rescataste 3 y deshiciste 1.',
       evidencia: { cifra: 52, rescates: 3 }, lineas: [
-        { texto: 'Lo de Altavista siempre te lo pregunto: es consejo.', deshacer: 'a20' },
-        { texto: 'Las facturas de Imprenta Delta van a Facturas.', deshacer: 'a19' },
+        { texto: 'Lo del consejo siempre te lo pregunto.', deshacer: 'a20' },
+        { texto: 'Las facturas de la imprenta van a Facturas.', deshacer: 'a19' },
         { texto: 'A Sofía le contestas en una línea. Así escribo sus borradores.', deshacer: 'a18' }],
       opciones: [O('visto', 'Entendido')], recomendada: 'visto' }),
     // Resúmenes: sin opciones, se leen y se descartan; vencen al día siguiente
     // ?encorto=vinetas: «En corto» con titular y viñetas, como lo escribe Opus
     Q('pr-resumen-dia', 'resumen', { texto: PARAMS.get('encorto') === 'vinetas' ? 'Ayer cerraste con 1 sin leer. Sin rescates.\n- Tus reglas movieron cerca de 250 correos y no regresaste ninguno.\n- Opus aprendió: ya no te enseña los adeudos de Telcel de la línea 614.\n- Lo más urgente: la reconexión del gas vence hoy.' : 'Laura espera tu respuesta antes de la 1. Lo demás puede esperar a la tarde.', creada: T(30, '07:30'), vence: '2026-10-31',
-      evidencia: { texto: 'Tienes tres juntas: Sofía a las 9, el consejo de Altavista a las 12 y Nodo a las 5. Antes del consejo conviene leer la propuesta de Bruno. Mariana espera tu firma, pero faltan los números del trimestre. Ordené 39 correos en la mañana.' } }),
+      evidencia: { texto: 'Tienes tres juntas: Sofía a las 9, el consejo a las 12 y tu cliente más grande a las 5. Antes del consejo conviene leer la propuesta de Bruno. Mariana espera tu firma, pero faltan los números del trimestre. Ordené 39 correos en la mañana.' } }),
     Q('pr-resumen-consejo', 'resumen', { objeto: 'evento:ev-consejo', texto: 'Se vota el presupuesto 2027. Bruno propone aprobarlo con revisión en junio; Lucía mandó el acta anterior el martes.', creada: T(30, '07:30'), vence: '2026-10-31' })
   ];
   // Como el motor: una pregunta de compromisos con Sí y No; con Sí, el motor abre el compromiso solo (?compromiso)
@@ -1165,33 +1165,33 @@ const PRUEBA = (() => {
   s.grupos = [
     G('linkedin', 'LinkedIn', 'linkedin.com', 88, 3, 0, { lista: true, categoria: 'social', baja: 'un_clic', asuntos: ['6 personas vieron tu perfil', 'Nuevas vacantes para ti'], destino: 'carpeta:Avisos de apps', motivo: 'Avisos de la red. Abriste 3 de 88.' }),
     G('expansion', 'Expansión', 'expansion.mx', 62, 9, 0, { lista: true, categoria: 'actualizaciones', baja: 'un_clic', asuntos: ['La mañana en 5 minutos'], destino: 'carpeta:Lecturas del fin de semana', motivo: 'Lo abres de vez en cuando. Ahí lo tienes cuando quieras leerlo.' }),
-    G('sofia', 'Sofía', 'oficina.mx', 54, 54, 30, { asuntos: ['Agenda del lunes'], destino: 'importante', motivo: 'Es tu asistente. Abres todo y contestas la mitad.' }),
-    G('rutas', 'Rutas Express', 'rutasexpress.mx', 45, 12, 0, { categoria: 'actualizaciones', asuntos: ['Tu paquete va en camino'], destino: 'carpeta:Avisos de apps', motivo: 'Avisos de envío. Los abres solo cuando esperas un paquete.' }),
-    G('altavista', 'Grupo Altavista', 'altavista.mx', 41, 41, 23, { asuntos: ['Voto del presupuesto 2027'], destino: 'importante', motivo: 'Es tu consejo. Abres todo y contestas seguido.' }),
+    G('sofia', 'Sofía', 'oficina.ejemplo.com', 54, 54, 30, { asuntos: ['Agenda del lunes'], destino: 'importante', motivo: 'Es tu asistente. Abres todo y contestas la mitad.' }),
+    G('paqueteria', 'Paquetería', 'paqueteria.ejemplo.com', 45, 12, 0, { categoria: 'actualizaciones', asuntos: ['Tu paquete va en camino'], destino: 'carpeta:Avisos de apps', motivo: 'Avisos de envío. Los abres solo cuando esperas un paquete.' }),
+    G('consejo', 'Consejo', 'consejo.ejemplo.com', 41, 41, 23, { asuntos: ['Voto del presupuesto 2027'], destino: 'importante', motivo: 'Es tu consejo. Abres todo y contestas seguido.' }),
     G('mercadolibre', 'Mercado Libre', 'mercadolibre.com.mx', 38, 9, 0, { lista: true, categoria: 'promociones', baja: 'un_clic', asuntos: ['Tu compra llegó'], destino: 'carpeta:Pedidos y entregas', motivo: 'Compras y entregas. Las abres para ver dónde va tu pedido.' }),
     G('liverpool', 'Liverpool', 'liverpool.com.mx', 34, 1, 0, { lista: true, categoria: 'promociones', baja: 'un_clic', asuntos: ['Venta nocturna'], destino: 'carpeta:Promociones', motivo: 'Abriste 1 de 34 y nunca contestas.' }),
-    G('agenda', 'Agenda Digital', 'agendadigital.app', 30, 0, 0, { lista: true, categoria: 'actualizaciones', baja: 'un_clic', asuntos: ['Tu resumen semanal'], destino: 'carpeta:Avisos de apps', motivo: 'Avisos de una app. No abriste ninguno.' }),
-    G('aurora', 'Club Aurora', 'clubaurora.mx', 27, 0, 0, { lista: true, categoria: 'promociones', baja: 'solo_correo', asuntos: ['Tu membresía te espera'], destino: 'papelera', motivo: 'No abriste ninguno. Su baja es por correo, así que no la pido.' }),
-    G('facturas', 'Facturas de proveedores', null, 23, 8, 0, { consulta: 'subject:factura -from:altavista.mx', asuntos: ['Factura F-2291'], destino: 'carpeta:Facturas', motivo: 'Las abres para pagar. Juntas son más fáciles de encontrar.' }),
-    G('semilla', 'Comunidad Semilla', 'comunidadsemilla.org', 20, 2, 0, { lista: true, categoria: 'actualizaciones', baja: 'un_clic', asuntos: ['Invitación: cena de fundadoras'], destino: 'carpeta:Lecturas del fin de semana', motivo: 'Abriste 2 de 20. Una era una invitación.' }),
-    G('medium', 'Medium', 'medium.com', 20, 2, 0, { lista: true, categoria: 'actualizaciones', baja: 'un_clic', asuntos: ['Cómo negociar una Serie A'], destino: 'carpeta:Lecturas del fin de semana', motivo: 'Lecturas largas. Las guardo para cuando tengas tiempo.' }),
-    G('faro', 'Estudio Faro', 'estudiofaro.mx', 18, 18, 11, { asuntos: ['Grabación del jueves'], destino: 'importante', motivo: 'Contestas casi todo. Laura coordina tus grabaciones.' }),
-    G('vuelobajo', 'Ofertas Vuelo Bajo', 'ofertasvuelobajo.com', 16, 0, 0, { lista: true, categoria: 'promociones', baja: 'un_clic', asuntos: ['Vuelos desde $899'], destino: 'baja', motivo: 'No abriste ninguno y tiene baja de un clic.' }),
-    G('viajesalba', 'Viajes Alba', 'viajesalba.mx', 15, 6, 0, { asuntos: ['Tu reservación a Mérida'], destino: 'importante', motivo: 'Son tus reservaciones. Si creas la carpeta de viajes, van ahí.' }),
-    G('herreria', 'Herrería Solís', 'herreriasolis.mx', 11, 9, 2, { asuntos: ['Cotización del barandal'], destino: 'carpeta:Proveedores de la obra', motivo: 'Cotizaciones de la obra. Las abres para comparar y pagar.' }),
-    G('nodo', 'Nodo', 'nodo.mx', 12, 12, 7, { asuntos: ['Hoja de términos de la Serie A'], destino: 'importante', motivo: 'Es tu inversión. Lo de dinero siempre te lo pregunto.' }),
-    G('sorteo', 'premios-sorteo.net', 'premios-sorteo.net', 9, 0, 0, { categoria: 'promociones', asuntos: ['¡Ganaste un iPhone!'], destino: 'spam', motivo: 'Sin historia y sin baja legítima. Nunca le pido la baja: confirmaría que tu dirección existe.' })
+    G('agenda', 'App de agenda', 'agenda.ejemplo.com', 30, 0, 0, { lista: true, categoria: 'actualizaciones', baja: 'un_clic', asuntos: ['Tu resumen semanal'], destino: 'carpeta:Avisos de apps', motivo: 'Avisos de una app. No abriste ninguno.' }),
+    G('gimnasio', 'Gimnasio', 'gimnasio.ejemplo.com', 27, 0, 0, { lista: true, categoria: 'promociones', baja: 'solo_correo', asuntos: ['Tu membresía te espera'], destino: 'papelera', motivo: 'No abriste ninguno. Su baja es por correo, así que no la pido.' }),
+    G('facturas', 'Facturas de proveedores', null, 23, 8, 0, { consulta: 'subject:factura -from:consejo.ejemplo.com', asuntos: ['Factura F-2291'], destino: 'carpeta:Facturas', motivo: 'Las abres para pagar. Juntas son más fáciles de encontrar.' }),
+    G('egresados', 'Asociación de egresados', 'egresados.ejemplo.com', 20, 2, 0, { lista: true, categoria: 'actualizaciones', baja: 'un_clic', asuntos: ['Invitación: cena de egresados'], destino: 'carpeta:Lecturas del fin de semana', motivo: 'Abriste 2 de 20. Una era una invitación.' }),
+    G('medium', 'Medium', 'medium.com', 20, 2, 0, { lista: true, categoria: 'actualizaciones', baja: 'un_clic', asuntos: ['Cómo negociar una renovación'], destino: 'carpeta:Lecturas del fin de semana', motivo: 'Lecturas largas. Las guardo para cuando tengas tiempo.' }),
+    G('auditores', 'Auditores', 'auditores.ejemplo.com', 18, 18, 11, { asuntos: ['Junta del jueves'], destino: 'importante', motivo: 'Contestas casi todo. Laura coordina la auditoría.' }),
+    G('vuelos', 'Ofertas de vuelos', 'vuelos.ejemplo.com', 16, 0, 0, { lista: true, categoria: 'promociones', baja: 'un_clic', asuntos: ['Vuelos desde $899'], destino: 'baja', motivo: 'No abriste ninguno y tiene baja de un clic.' }),
+    G('agencia', 'Agencia de viajes', 'viajes.ejemplo.com', 15, 6, 0, { asuntos: ['Tu reservación a Mérida'], destino: 'importante', motivo: 'Son tus reservaciones. Si creas la carpeta de viajes, van ahí.' }),
+    G('herreria', 'Herrería', 'herreria.ejemplo.com', 11, 9, 2, { asuntos: ['Cotización del barandal'], destino: 'carpeta:Proveedores de la obra', motivo: 'Cotizaciones de la obra. Las abres para comparar y pagar.' }),
+    G('cliente', 'Cliente clave', 'cliente.ejemplo.com', 12, 12, 7, { asuntos: ['Renovación del contrato'], destino: 'importante', motivo: 'Es tu cliente más grande. Lo de dinero siempre te lo pregunto.' }),
+    G('sorteo', 'premios-sorteo.ejemplo.com', 'premios-sorteo.ejemplo.com', 9, 0, 0, { categoria: 'promociones', asuntos: ['¡Ganaste un iPhone!'], destino: 'spam', motivo: 'Sin historia y sin baja legítima. Nunca le pido la baja: confirmaría que tu dirección existe.' })
   ];
   // Carpetas que Opus detectó en este correo. Las 7 recomendadas ordenan 645 de los 728 correos que no son importantes; Viajes es opcional.
   // [nombre, correos del mes, por qué la propone, tres ejemplos, recomendada, etiqueta que ya tenía la persona]
   const CARPETAS = [
     ['Promociones', 241, 'Liverpool, Mercado Libre y otras tiendas. Abriste 4 de 241.', [77, 87, 88], true],
-    ['Avisos de apps', 196, 'LinkedIn, Rutas Express y Agenda Digital. Los abres solo cuando esperas algo.', [78, 73, 86], true],
-    ['Lecturas del fin de semana', 112, 'Expansión, Medium y Comunidad Semilla. Los abres sábado y domingo.', [72, 79, 71], true],
+    ['Avisos de apps', 196, 'LinkedIn, la paquetería y la app de agenda. Los abres solo cuando esperas algo.', [78, 73, 86], true],
+    ['Lecturas del fin de semana', 112, 'Expansión, Medium y la asociación de egresados. Los abres sábado y domingo.', [72, 79, 71], true],
     ['Pedidos y entregas', 38, 'Tus compras en línea. Las buscas cuando esperas un paquete.', [74, 89, 73], true],
     ['Proveedores de la obra', 23, 'Cotizaciones y avances de la remodelación. Los abres para comparar y pagar.', [80, 81, 82], true],
     ['Facturas', 23, 'Facturas de 9 proveedores. Ya tenías esta etiqueta: uso la tuya.', [76, 90, 85], true, 'Facturas'],
-    ['Colegio de los niños', 12, 'Circulares, tareas y pagos del Colegio Arboleda. Los lees los domingos.', [83, 84, 85], true],
+    ['Colegio de los niños', 12, 'Circulares, tareas y pagos del colegio. Los lees los domingos.', [83, 84, 85], true],
     ['Viajes y reservaciones', 15, 'Reservaciones y pases de abordar. Son pocos: si prefieres, se quedan en tu bandeja.', [75, 91], false]];
   const COBERTURA = 645 / 728;
   const DESTINOS = g => {
@@ -1231,9 +1231,9 @@ const PRUEBA = (() => {
     s.plan.push(PL('pl-c-receipts', 'plan', { objeto: 'carpeta:/Receipts', texto: 'Receipts, tu etiqueta: 38 recibos en 30 días.',
       evidencia: { cifra: 38, ejemplos: ['1a188a137ad563db', '1a123e351279d6fa', '1a0fa0d5a700229b'], etiqueta_existente: 'Receipts' }, opciones: [O('Crear', 'Crear'), O('No', 'No')], recomendada: 'Crear' }));
   }
-  [['f-altavista', 'organizacion', '41 correos de 3 personas en altavista.mx.'], ['f-sofia', 'persona', 'Firma como tu asistente y te escribe a diario.'],
-    ['f-faro', 'organizacion', 'Productora del podcast. Laura coordina las grabaciones.'], ['f-nodo', 'organizacion', 'Serie A en curso. Mariana te pide firmas.'],
-    ['f-ana', 'persona', 'Firma como tu hija.'], ['f-delta', 'organizacion', 'Una factura al mes desde facturacion@imprentadelta.mx.'], ['f-viajesalba', 'organizacion', 'Dirección de reservaciones de una agencia.']]
+  [['f-consejo', 'organizacion', '41 correos de 3 personas en consejo.ejemplo.com.'], ['f-sofia', 'persona', 'Firma como tu asistente y te escribe a diario.'],
+    ['f-auditores', 'organizacion', 'Auditan tus estados financieros. Laura coordina la revisión.'], ['f-cliente', 'organizacion', 'Renovación en curso. Mariana te pide firmar.'],
+    ['f-ana', 'persona', 'Firma como tu hija.'], ['f-imprenta', 'organizacion', 'Una factura al mes desde facturacion@imprenta.ejemplo.com.'], ['f-agencia', 'organizacion', 'Dirección de reservaciones de una agencia.']]
     .forEach(x => { const f = s.fichas.find(y => y.id === x[0]); s.plan.push(PL('pl-f-' + x[0].slice(2), 'ficha', { objeto: x[0], texto: x[2], nombre: f.nombre,
       opciones: [O('persona', 'Persona'), O('organizacion', 'Organización')], recomendada: x[1] })); });
   const NIV = () => [O('apagado', 'Apagado'), O('propone', 'Te propongo'), O('avisa', 'Te aviso'), O('solo', 'Lo hago solo')];
@@ -1243,31 +1243,31 @@ const PRUEBA = (() => {
   DEC('enterado', '¿Cómo sabe Opus que ya te enteraste?', [['Con «Ya lo vi»', 'Mostrar no es leer. Un toque en Hoy marca leído lo que Opus te resumió, o se lo dices a Opus en Claude.'], ['En automático', 'Cero toques, con el riesgo de que algo se te escape.']], 'Con «Ya lo vi»');
   DEC('pendientes', '¿Dónde vive lo leído que te pide algo?', [['En tu bandeja', 'Ahí contestas. Sale cuando lo atiendes.'], ['En «Pendientes»', 'Tu bandeja queda en cero y el pendiente vive en Hoy.']], 'En tu bandeja');
   DEC('caducidad', '¿Qué tan rápido caduca lo opcional?', [['Opus decide', 'Por tipo, con 72 horas de respaldo. Opus aprende de tus Deshacer.'], ['Conservador', 'Nada sale antes de 7 días.'], ['Nada caduca', 'Lo opcional se queda hasta que lo quites.']], 'Opus decide');
-  [['publicidad', 'avisa', 'Liverpool te mandó 34 este mes y abriste 1.'], ['boletines', 'avisa', 'Expansión y Comunidad Semilla: 82 correos, abriste 11.'],
-    ['notificaciones', 'propone', 'LinkedIn, Rutas Express y Agenda Digital: 163 avisos.'], ['carpetas', 'avisa', 'Proveedores de la obra, Colegio y Facturas: 58 correos que hoy buscas a mano.'],
-    ['papelera', 'propone', 'Club Aurora: 27 correos y no abriste ninguno.'], ['spam', 'avisa', 'premios-sorteo.net: 9 correos sin historia.'], ['bajas', 'propone', 'Ofertas Vuelo Bajo: 16 correos, 0 abiertos, baja de un clic.'],
+  [['publicidad', 'avisa', 'Liverpool te mandó 34 este mes y abriste 1.'], ['boletines', 'avisa', 'Expansión y la asociación de egresados: 82 correos, abriste 11.'],
+    ['notificaciones', 'propone', 'LinkedIn, la paquetería y la app de agenda: 163 avisos.'], ['carpetas', 'avisa', 'Proveedores de la obra, Colegio y Facturas: 58 correos que hoy buscas a mano.'],
+    ['papelera', 'propone', 'Lo del gimnasio: 27 correos y no abriste ninguno.'], ['spam', 'avisa', 'premios-sorteo.ejemplo.com: 9 correos sin historia.'], ['bajas', 'propone', 'Ofertas de vuelos: 16 correos, 0 abiertos, baja de un clic.'],
     ['respuestas', 'propone', 'A Laura le contestas en dos líneas y firmas con tu nombre. Así escribiría tus borradores.'],
-    ['seguimiento', 'propone', 'Mariana te debe los números del trimestre desde el miércoles.'], ['compromisos', 'avisa', 'El martes le prometiste a Laura el guion revisado.'],
-    ['proteccion', 'avisa', 'El 21 de octubre llegó una factura de imprenta-delta.co que pedía pagar a otra cuenta.'], ['personas', 'solo', 'Bruno Salas es el CFO de Altavista. Su tema abierto contigo: el flujo del trimestre.'],
+    ['seguimiento', 'propone', 'Mariana te debe los números del trimestre desde el miércoles.'], ['compromisos', 'avisa', 'El martes le prometiste a Laura el informe revisado.'],
+    ['proteccion', 'avisa', 'El 21 de octubre llegó una factura de imprenta-ejemplo.co que pedía pagar a otra cuenta.'], ['personas', 'solo', 'Bruno Salas es el CFO y reporta al consejo. Su tema abierto contigo: el flujo del trimestre.'],
     ['juntas', 'apagado', 'Hoy tienes 3 juntas. Enciéndela cuando quieras y te dejo el contexto de cada una.'], ['autonomia', 'apagado', 'Sirve en unas semanas: con 20 de 20 aceptadas, te propongo darle más libertad.'],
     ['bandeja_limpia', 'avisa', 'Hoy tienes 212 correos leídos en tu bandeja que no te piden nada. Los archivaría cada día a las 19:00.'],
     ['whatsapp', 'propone', 'Paola te preguntó por la cena del martes y no le has contestado.']]
     .forEach(x => { const p = s.politicas.find(y => y.clave === x[0]); s.plan.push(PL('pl-p-' + x[0], 'politica', { objeto: p.id, texto: p.texto + ' ' + FRASE_NIVEL[x[1]], nombre: p.nombre, evidencia: { texto: x[2] }, opciones: NIV(), recomendada: x[1] })); });
   s.politicas.push(P('pol-p-facturas', null, 'Facturas que vencen', 'Ordeno tus facturas y te aviso tres días antes de que venzan.', { origen: 'opus', estado: planAbierto ? 'propuesta' : 'retirada', nivel: 'avisa' }));
   s.politicas.push(P('pol-p-sofia', null, 'Lo de Sofía', 'Lo que mande Sofía siempre se queda en tu bandeja.', { origen: 'opus', estado: planAbierto ? 'propuesta' : 'retirada', nivel: 'solo' }));
-  s.plan.push(PL('pl-o-facturas', 'politica', { objeto: 'pol-p-facturas', nombre: 'Facturas que vencen', texto: 'Recibes 23 facturas al mes. ¿Te las ordeno y te aviso de las que vencen?', evidencia: { texto: 'La F-2291 de Imprenta Delta vence el 5 de noviembre.' }, opciones: NIV(), recomendada: 'avisa' }));
+  s.plan.push(PL('pl-o-facturas', 'politica', { objeto: 'pol-p-facturas', nombre: 'Facturas que vencen', texto: 'Recibes 23 facturas al mes. ¿Te las ordeno y te aviso de las que vencen?', evidencia: { texto: 'La F-2291 de la imprenta vence el 5 de noviembre.' }, opciones: NIV(), recomendada: 'avisa' }));
   s.plan.push(PL('pl-o-sofia', 'politica', { objeto: 'pol-p-sofia', nombre: 'Lo de Sofía', texto: 'Abres los 54 correos de Sofía. ¿Los dejo siempre en tu bandeja?', evidencia: { texto: 'Contestas la mitad el mismo día.' }, opciones: NIV(), recomendada: 'solo' }));
-  s.plan.push(PL('pl-q-medium', 'pregunta', { texto: '¿Medium es lectura que sí haces?', evidencia: { texto: 'Abriste 2 de 20, los dos sobre inversión.' }, opciones: [O('no', 'No, a la papelera'), O('si', 'Sí, a Lecturas del fin de semana')], recomendada: 'si' }));
-  s.plan.push(PL('pl-q-obra', 'pregunta', { texto: '¿Herrería Solís y Pisos del Bajío son de la misma obra?', evidencia: { texto: 'Los dos mencionan a Arq. Mendoza y la calle Olivos.' }, opciones: [O('si', 'Sí, la de la casa'), O('no', 'No')], recomendada: 'si' }));
+  s.plan.push(PL('pl-q-medium', 'pregunta', { texto: '¿Medium es lectura que sí haces?', evidencia: { texto: 'Abriste 2 de 20, los dos sobre negociación.' }, opciones: [O('no', 'No, a la papelera'), O('si', 'Sí, a Lecturas del fin de semana')], recomendada: 'si' }));
+  s.plan.push(PL('pl-q-obra', 'pregunta', { texto: '¿La herrería y los pisos son de la misma obra?', evidencia: { texto: 'Los dos mencionan al arquitecto y la calle Olivos.' }, opciones: [O('si', 'Sí, la de la casa'), O('no', 'No')], recomendada: 'si' }));
   s.plan.push(PL('pl-q-linkedin', 'pregunta', { texto: '¿Los mensajes de LinkedIn también van a Avisos de apps?', evidencia: { texto: 'Andrea Vega te escribió por ahí el 14 de octubre.' }, opciones: [O('si', 'Sí, todo junto'), O('no', 'Los mensajes, en mi bandeja')] }));
   // ?lineamientos: el plan como lo arma la guía. Cada propuesta dice su lineamiento, cada lineamiento es
   // una propuesta con sus opciones y el resultado del plan trae lo abierto que quedaría escondido. Las políticas de un
   // lineamiento no llevan propuesta propia. Una duda llega sin el campo, con el nombre del lineamiento al inicio del texto
   if (PARAMS.has('lineamientos')) {
-    const LIN = { lo_que_no_abres: ['pl-c-promociones', 'pl-c-avisos-de-apps', 'pl-c-pedidos-y-entregas', 'pl-g-linkedin', 'pl-g-rutas', 'pl-g-mercadolibre', 'pl-g-liverpool', 'pl-g-agenda'],
-      con_calma: ['pl-c-lecturas-del-fin-de-semana', 'pl-g-expansion', 'pl-g-semilla', 'pl-g-medium', 'pl-q-medium'],
+    const LIN = { lo_que_no_abres: ['pl-c-promociones', 'pl-c-avisos-de-apps', 'pl-c-pedidos-y-entregas', 'pl-g-linkedin', 'pl-g-paqueteria', 'pl-g-mercadolibre', 'pl-g-liverpool', 'pl-g-agenda'],
+      con_calma: ['pl-c-lecturas-del-fin-de-semana', 'pl-g-expansion', 'pl-g-egresados', 'pl-g-medium', 'pl-q-medium'],
       se_repite: ['pl-c-proveedores-de-la-obra', 'pl-c-facturas', 'pl-c-colegio-de-los-ninos', 'pl-c-viajes-y-reservaciones', 'pl-g-facturas', 'pl-g-herreria', 'pl-q-obra'],
-      sobra: ['pl-g-aurora', 'pl-g-vuelobajo'], al_dia: ['pl-historico'] };
+      sobra: ['pl-g-gimnasio', 'pl-g-vuelos'], al_dia: ['pl-historico'] };
     const DE_LIN = ['publicidad', 'notificaciones', 'boletines', 'carpetas', 'papelera', 'bajas', 'bandeja_limpia'].map(c => 'pl-p-' + c);
     s.plan = s.plan.filter(p => DE_LIN.indexOf(p.id) < 0);
     Object.keys(LIN).forEach(l => LIN[l].forEach(id => { const p = s.plan.find(x => x.id === id); if (p) p.lineamiento = l; }));
@@ -1278,17 +1278,17 @@ const PRUEBA = (() => {
     LP('sin_leer', 'Sin leer solo queda lo que te pide algo; lo demás lo marco leído.', { antes: 39, despues: 6, ejemplos: [{ remitente: 'LinkedIn', cifra: 12 }, { remitente: 'Mercado Libre', cifra: 8 }, { remitente: 'Expansión', cifra: 6 }] },
       [OP('solo_te_necesita', 'Solo lo que te necesita', 'Marco leído lo que Opus juzga sin importancia y lo que tus reglas mandan a carpetas. Lo que te necesita sigue sin leer hasta que lo atiendas.'),
         OP('como_esta', 'Déjalos sin leer', 'Tu correo sin leer se queda como está.')], 'solo_te_necesita');
-    LP('lo_que_no_abres', 'Lo que no abres: 475 al mes, abres 2 de cada 100. LinkedIn 88, Mercado Libre 52, Rutas Express 48, Liverpool 34, Agenda Digital 29.',
-      { cifra: 475, abiertos: 2, ejemplos: [{ remitente: 'LinkedIn', cifra: 88 }, { remitente: 'Mercado Libre', cifra: 52 }, { remitente: 'Rutas Express', cifra: 48 }] },
+    LP('lo_que_no_abres', 'Lo que no abres: 475 al mes, abres 2 de cada 100. LinkedIn 88, Mercado Libre 52, Paquetería 48, Liverpool 34, App de agenda 29.',
+      { cifra: 475, abiertos: 2, ejemplos: [{ remitente: 'LinkedIn', cifra: 88 }, { remitente: 'Mercado Libre', cifra: 52 }, { remitente: 'Paquetería', cifra: 48 }] },
       [OP('fuera_leido', 'Fuera y leído', 'Sale de tu bandeja a su carpeta, ya leído. Si un día abres algo de ahí, lo dejo a la vista.'),
         OP('fuera', 'Fuera, sin marcarlo leído', 'Sale de tu bandeja y lo ves como nuevo en su carpeta.'), OP('bandeja', 'Déjalo en mi bandeja', 'Sigue llegando a tu bandeja como hoy.')], 'fuera_leido');
-    LP('con_calma', 'Boletines y lecturas que abres a veces.', { cifra: 112, abiertos: 31, ejemplos: [{ remitente: 'Expansión', cifra: 62 }, { remitente: 'Comunidad Semilla', cifra: 30 }, { remitente: 'Medium', cifra: 20 }] },
+    LP('con_calma', 'Boletines y lecturas que abres a veces.', { cifra: 112, abiertos: 31, ejemplos: [{ remitente: 'Expansión', cifra: 62 }, { remitente: 'Asociación de egresados', cifra: 30 }, { remitente: 'Medium', cifra: 20 }] },
       [OP('leer_despues', 'A Leer después', 'Van a su carpeta sin marcarlos leídos. Los lees con calma el fin de semana.'), OP('bandeja', 'Déjalos en mi bandeja', 'Siguen llegando a tu bandeja como hoy.'),
         OP('como_no_abro', 'Como lo que no abro', 'Fuera de tu bandeja y ya leídos.')], 'leer_despues');
     LP('se_repite', 'Lo que se repite: 73 al mes, abres 88 de cada 100. Facturas 23, Proveedores de la obra 23, Viajes 15, Colegio 12.', { cifra: 73, abiertos: 88, ejemplos: [] },
       [OP('asi', 'Así', 'Cada tipo a su carpeta. A Hoy sube lo que trae fecha, cobro o algo que hacer.'), OP('bandeja', 'Todo en mi bandeja', 'Se quedan en tu bandeja como hoy.'),
         OP('sin_avisar', 'A su carpeta, sin avisarme', 'Van a su carpeta y no suben a Hoy.')], 'asi');
-    LP('sobra', 'Lo que sobra: bajas de Ofertas Vuelo Bajo, 16 al mes y abriste 0. A la papelera Club Aurora, 27 al mes, que borras sin abrir.', { cifra: 43, abiertos: 0, ejemplos: [] },
+    LP('sobra', 'Lo que sobra: bajas de las ofertas de vuelos, 16 al mes y abriste 0. A la papelera lo del gimnasio, 27 al mes, que borras sin abrir.', { cifra: 43, abiertos: 0, ejemplos: [] },
       [OP('las_dos', 'Las dos', 'Te doy de baja de lo que nunca abres y mando a la papelera lo que borras sin abrir. Te aviso en Hoy.'), OP('papelera', 'Solo papelera', 'Sin bajas: lo que borras sin abrir va a la papelera.'),
         OP('cada_una', 'Pregúntame cada una', 'Cada baja y cada envío a la papelera espera tu sí.'), OP('ninguna', 'Ninguna', 'Sigue llegando como hoy.')], 'las_dos');
     LP('al_dia', 'Tu bandeja al día: hoy tienes 212 leídos que no te piden nada.', { cifra: 212, ejemplos: [] },
@@ -1303,18 +1303,18 @@ const PRUEBA = (() => {
     s.plan.push(PL('pl-resultado', 'plan', { objeto: 'resultado', texto: 'Lo del último mes en tu bandeja pasaría de 853 a 140.',
       evidencia: { antes: 853, despues: 140, abiertos: [{ id_hilo: H16(77), remitente: 'Liverpool', asunto: 'Venta nocturna', fecha: '2026-10-18', propuesta: 'pl-g-liverpool' },
         { id_hilo: H16(74), remitente: 'Mercado Libre', asunto: 'Tu paquete va en camino', fecha: '2026-10-22', propuesta: 'pl-g-mercadolibre' },
-        { id_hilo: H16(73), remitente: 'Rutas Express', asunto: 'Tu ruta de mañana', fecha: '2026-10-27', propuesta: 'pl-g-rutas' }] }, opciones: [O('visto', 'Visto')], recomendada: null }));
+        { id_hilo: H16(73), remitente: 'Paquetería', asunto: 'Tu entrega de mañana', fecha: '2026-10-27', propuesta: 'pl-g-paqueteria' }] }, opciones: [O('visto', 'Visto')], recomendada: null }));
     // ?lineamientos=sinlin: el motor no guarda el campo; las reglas llegan sin lineamiento y el plan cae al de hoy
     if (PARAMS.get('lineamientos') === 'sinlin') s.plan = s.plan.filter(p => !/^lineamiento:/.test(p.objeto || '') && p.id !== 'pl-resultado').map(p => Object.assign(p, { lineamiento: undefined }));
   }
   s.propuestas = s.propuestas.concat(s.plan);
   // ?toque: lo que la persona aceptó en Claude espera su toque, sin recomendada
-  if (PARAMS.has('toque')) { const q = s.propuestas.find(x => x.id === 'pr-papelera'); if (q) Object.assign(q, { recomendada: null, toque_pendiente: { opcion: 'Sí, a la papelera', que: 'Mandar a la papelera lo de Club Aurora.' } }); }
+  if (PARAMS.has('toque')) { const q = s.propuestas.find(x => x.id === 'pr-papelera'); if (q) Object.assign(q, { recomendada: null, toque_pendiente: { opcion: 'Sí, a la papelera', que: 'Mandar a la papelera lo del gimnasio.' } }); }
   s.analisis = { estado: 'listo', dias: 30, total_correos: 853, enviados_90_dias: 412, grupos: s.grupos, filtros: [{ criterio: 'from:boletin@expansion.mx', accion: 'etiqueta:Lecturas' }],
     etiquetas: ['Lecturas', 'Facturas'], marcado_masivo: { veces: 4, correos: 310 } };
   // Lo que deja el plan recomendado en tu último mes: 853 llegan, 140 se quedan
   const BASE_SIMULACRO = { 'carpeta:Promociones': 241, 'carpeta:Avisos de apps': 196, 'carpeta:Lecturas del fin de semana': 112, 'carpeta:Pedidos y entregas': 38, 'carpeta:Proveedores de la obra': 23, 'carpeta:Facturas': 23, 'carpeta:Colegio de los niños': 12, papelera: 31, spam: 21, baja: 16 };
-  const ABIERTOS_QUE_SALEN = [[71, 'semilla'], [72, 'expansion'], [73, 'rutas'], [74, 'mercadolibre'], [80, 'herreria'], [76, 'facturas'], [77, 'liverpool'], [78, 'linkedin'], [79, 'medium']];
+  const ABIERTOS_QUE_SALEN = [[71, 'egresados'], [72, 'expansion'], [73, 'paqueteria'], [74, 'mercadolibre'], [80, 'herreria'], [76, 'facturas'], [77, 'liverpool'], [78, 'linkedin'], [79, 'medium']];
 
   if (PARAMS.has('vacio')) {
     ['juicios', 'borradores', 'seguimientos', 'actividad', 'agenda'].forEach(k => { s[k] = []; });
@@ -1335,12 +1335,12 @@ const PRUEBA = (() => {
       opciones: [{ etiqueta: 'Confirmar', accion: 'borrador', texto: 'Confirmo. Gracias.', recomendada: true }] });
   // ?seguridad=carpeta: la decisión de seguridad ya tomada y un aviso de acceso sensible que Opus deja en Hoy
   if (PARAMS.get('seguridad') === 'carpeta') s.juicios.push(
-    { id_hilo: '19a2c3d4e5f60720', prioridad: 'media', remitente: 'Banco Azul <alertas@bancoazul.mx>', asunto: 'Nuevo acceso a tu banca en línea',
+    { id_hilo: '19a2c3d4e5f60720', prioridad: 'media', remitente: 'Tu banco <alertas@banco.ejemplo.com>', asunto: 'Nuevo acceso a tu banca en línea',
       recomendacion: 'Un acceso nuevo desde una Mac en Guadalajara. Si fuiste tú, va a su carpeta.', motivo: 'Aviso de acceso.', sensible: 'dinero', sin_unir: true,
       opciones: [{ etiqueta: 'Fui yo: a Avisos de apps y seguridad', accion: 'mover', carpeta: 'Avisos de apps y seguridad', recomendada: true }, { etiqueta: 'Marcar leído', accion: 'leido' }] });
   // ?spam: un aviso legítimo de un remitente nuevo que Gmail mandó a spam; el motor no lo saca solo y la persona lo saca desde Hoy
   if (PARAMS.has('spam')) s.juicios.push(
-    { id_hilo: '19a2c3d4e5f60721', prioridad: 'alta', remitente: 'Escuela Nueva <avisos@escuelanueva.edu.mx>', asunto: 'Inscripción del ciclo de primavera', en_bandeja: false, donde: 'spam',
+    { id_hilo: '19a2c3d4e5f60721', prioridad: 'alta', remitente: 'Escuela de idiomas <avisos@idiomas.ejemplo.com>', asunto: 'Inscripción del ciclo de primavera', en_bandeja: false, donde: 'spam',
       recomendacion: 'La escuela abrió la inscripción; cierra el viernes. Gmail lo mandó a spam.', motivo: 'Remitente nuevo, firmado por su dominio.', sin_unir: true, opciones: [] });
   // En la bandeja se queda lo que te necesita y lo nuevo sin juicio
   // Como el motor: ver_hoy({visita: true}) trae lo acumulado desde la visita anterior y empieza la cuenta de cero (?visita)
@@ -1357,10 +1357,10 @@ const PRUEBA = (() => {
   // Desde el conector 62: una respuesta en el hilo deja el seguimiento abierto con respuesta por_confirmar (?porconfirmar)
   if (PARAMS.has('porconfirmar')) s.seguimientos.push(
     { id: 's6', id_hilo: H16(24), canal: 'correo', direccion: 'le_deben', que: 'Cotización del evento', vence: '2026-10-29', vencido: true, politica: 'pol-seguimiento', estado: 'abierto',
-      con: 'Ricardo Peña <ricardo@eventosrp.mx>', desde: '2026-10-24', recordatorios: 1, ultimo_recordatorio: '2026-10-28', recordatorio: 'Ricardo, ¿me mandas la cotización?',
+      con: 'Ricardo Peña <ricardo@eventos.ejemplo.com>', desde: '2026-10-24', recordatorios: 1, ultimo_recordatorio: '2026-10-28', recordatorio: 'Ricardo, ¿me mandas la cotización?',
       respuesta: 'por_confirmar', respuesta_llego: '2026-10-30 08:40' },
     { id: 's7', id_hilo: H16(25), canal: 'correo', direccion: 'debe_la_persona', que: 'Fecha de la junta de consejo', vence: '2026-10-29', vencido: true, politica: 'pol-compromisos', estado: 'abierto',
-      con: 'Lucía Herrera <lucia@altavista.mx>', origen: { canal: 'correo', fecha: '2026-10-27' }, respuesta: 'por_confirmar', respuesta_llego: '2026-10-30 09:05' });
+      con: 'Lucía Herrera <lucia@consejo.ejemplo.com>', origen: { canal: 'correo', fecha: '2026-10-27' }, respuesta: 'por_confirmar', respuesta_llego: '2026-10-30 09:05' });
   // Lo que ya estaba en Recibidos al instalar; su Deshacer lo regresa por partes
   let inicialDeshecho = false;
   // ?inicial=aplicando, hecho, deshaciendo o deshecho, con &modo=leido o ambos (sin modo, archivar como el motor anterior)
@@ -1487,7 +1487,7 @@ const PRUEBA = (() => {
       hecho = 'Guardado.';
     } else if (p.tipo === 'politica' && opcion !== 'no') {
       if (p.id === 'pr-notif') { hecho = 'Listo: 17 avisos a Avisos de apps, ya leídos.'; }
-      else if (p.objeto === 'pol-papelera') { nivel('pol-papelera', 'avisa'); hecho = 'Listo: lo que llegue de Club Aurora va a la papelera.'; }
+      else if (p.objeto === 'pol-papelera') { nivel('pol-papelera', 'avisa'); hecho = 'Listo: lo que llegue del gimnasio va a la papelera.'; }
       else { estadoPol(p.objeto, 'activa'); hecho = 'Listo: la regla quedó activa.'; }
     } else if (p.tipo === 'nivel' && opcion !== 'no') {
       nivel(p.objeto, opcion);
@@ -1517,7 +1517,7 @@ const PRUEBA = (() => {
         avisos_consentimiento: consent.some(x => !x.deshecho) ? consent.filter(x => !x.deshecho).map(x => Object.assign({}, x)) : undefined,
         correo_sin_revisar: PARAMS.has('sinrevisar') ? { desde: '2026-10-30 08:20', hasta: '2026-10-30 09:40', sin_revisar: 37,
           texto: 'Llegó más correo del que alcancé a revisar entre dos lecturas y una parte quedó sin revisar. Si esperas algo de esas horas, búscalo en Gmail.' } : undefined,
-        apartado: PARAMS.has('apartado') ? { desde: T(30, '07:00'), lineas: [{ carpeta: 'Facturas', correos: 4, sin_leer: 2, texto: 'Facturas: 4 correos (2 sin leer), de CFE, Telmex y Amazon y otros.' }, { carpeta: 'Publicidad', correos: 18, sin_leer: 0, texto: 'Publicidad: 18 correos, de Liverpool, Mercado Libre y Rutas Express y otros.' }] } : undefined,
+        apartado: PARAMS.has('apartado') ? { desde: T(30, '07:00'), lineas: [{ carpeta: 'Facturas', correos: 4, sin_leer: 2, texto: 'Facturas: 4 correos (2 sin leer), de CFE, Telmex y Amazon y otros.' }, { carpeta: 'Publicidad', correos: 18, sin_leer: 0, texto: 'Publicidad: 18 correos, de Liverpool, Mercado Libre, la paquetería y otros.' }] } : undefined,
         // Como el motor: recién aplicado el plan, falta lo de Claude; ?trabaja=1, el activador puesto y una rutina que ya llamó
         instalacion: PARAMS.has('trabaja') ? { plan_aceptado: '2026-10-30 07:10', activadores: ['corrida'], corrida_puesta: true, primera_rutina: '2026-10-30 07:15', proxima_revision: '2026-10-30 13:45', trabaja: true }
           : { plan_aceptado: null, activadores: [], corrida_puesta: false, primera_rutina: null, proxima_revision: null, trabaja: false, falta: 'activadores' },
@@ -2596,7 +2596,7 @@ function adaptar_experiencia(e) {
   const textos = {};
   Object.keys(e.textos || {}).forEach(k => { const t = String(e.textos[k] || '').trim(); if (t) textos[ALIAS_SECCION[k] || k] = t; });
   const res = e.resumen || {};
-  // Secciones propias: {titulo, filtro} con filtro por política, ficha o prioridad («ficha:f-faro» o {ficha: 'f-faro'})
+  // Secciones propias: {titulo, filtro} con filtro por política, ficha o prioridad («ficha:f-auditores» o {ficha: 'f-auditores'})
   const propias = lista(e, 'secciones_propias').map(x => ({ titulo: String(x.titulo || '').trim(), filtro: filtroPropio(x.filtro) })).filter(x => x.titulo && x.filtro);
   // Cómo se entera la persona (decisión del plan, en decisiones.enterarse): con «Ya lo vi» o en automático
   const enterarse = String((e.decisiones && e.decisiones.enterarse) || e.enterado || '');
@@ -5211,7 +5211,7 @@ function elegirPrioridad(prioridad) {
 /* ---------- Hojas de memoria: persona u organización ----------
    Lo que Opus sabe de cada quien. La persona corrige de un toque si es persona u
    organización, la relación y la importancia, y le enseña cosas en sus palabras.
-   Una hoja lleva a otra (Bruno → Grupo Altavista) con Atrás. */
+   Una hoja lleva a otra (Bruno → Consejo) con Atrás. */
 function abrirFicha(ref, nombre, volverA, desde) {
   ['tipo', 'relacion', 'importancia', 'ensenar'].forEach(k => delete estado.ui[k]);
   const meta = { tipo: 'ficha', ref: ref, nombre: nombre || '', volverA: volverA, desde: desde || null, modo: 'ficha', borrador: '' };

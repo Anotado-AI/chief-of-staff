@@ -169,7 +169,7 @@ Nunca entran aquí: códigos y alertas de acceso (van a "Avisos de apps y seguri
 
 **Texto que aprueba la persona.** Uno por carpeta: "Lo de viajes, a Viajes". "Facturas y recibos, a Facturas".
 
-**Cómo se compila.** Una política por carpeta, todas con `origen: catalogo` y nombre "Carpeta <nombre>". Las carpetas las detecta Opus leyendo el mes, no salen de una lista fija: Facturas y pagos, Compras y envíos, Viajes, Escuela, Trámites, Proyecto Altavista. Las que su correo pida (referencias: unas 8, cada una con 5 o más correos al mes), dentro de la etiqueta madre "Chief of Staff" (guía de instalación, paso 3d).
+**Cómo se compila.** Una política por carpeta, todas con `origen: catalogo` y nombre "Carpeta <nombre>". Las carpetas las detecta Opus leyendo el mes, no salen de una lista fija: Facturas y pagos, Compras y envíos, Viajes, Escuela, Trámites, Obra de la casa. Las que su correo pida (referencias: unas 8, cada una con 5 o más correos al mes), dentro de la etiqueta madre "Chief of Staff" (guía de instalación, paso 3d).
 
 ```
 condiciones:
@@ -387,7 +387,7 @@ criterio: |
 cuando: cada_corrida
 ```
 
-- Abre con `seguimiento({id_hilo, canal: 'correo', direccion: 'le_deben', que, con, vence, proxima_revision, politica})`. `que` en 120 caracteres o menos (el motor corta en una palabra completa): "Cotización de noviembre de Altavista". `con` es quien le debe la respuesta, cuando no es el remitente.
+- Abre con `seguimiento({id_hilo, canal: 'correo', direccion: 'le_deben', que, con, vence, proxima_revision, politica})`. `que` en 120 caracteres o menos (el motor corta en una palabra completa): "Cotización de noviembre de la imprenta". `con` es quien le debe la respuesta, cuando no es el remitente.
 - Lo cierras cuando llega la respuesta, con una cancelación comprobada en el hilo o por decisión de la persona. Nunca por silencio ni por tiempo.
 - Seguimiento cubre lo que la persona pidió y nadie aceptó. Lo que alguien prometió es de Compromisos.
 
@@ -443,7 +443,7 @@ cuando: cada_corrida
 
 - Solo las de una junta donde estuvo la persona: la junta es suya (la convocó o la grabó su cuenta) o el resumen la nombra entre los asistentes.
 - De los próximos pasos o acuerdos: lo asignado a la persona es `debe_la_persona` y lo asignado a otro asistente es `le_deben`. Sin dueño o entre terceros, no cuenta.
-- El `que` dice de qué junta salió, por su tema o su contraparte y no por el título que pone la herramienta: "Junta Grupo Ferro: mandar la propuesta". Cada compromiso va aparte, con `con`: el asistente con quien quedó, nunca el robot que mandó las notas. Guardarlo dos veces desde el mismo hilo no lo duplica. Si ya está abierto desde otro hilo, no se repite.
+- El `que` dice de qué junta salió, por su tema o su contraparte y no por el título que pone la herramienta: "Junta con el cliente: mandar la propuesta". Cada compromiso va aparte, con `con`: el asistente con quien quedó, nunca el robot que mandó las notas. Guardarlo dos veces desde el mismo hilo no lo duplica. Si ya está abierto desde otro hilo, no se repite.
 - Si la herramienta nombra a un orador por su dispositivo ("iPhone") y la junta es de la persona, ese orador es la persona. Si no se puede saber, no cuenta.
 - Las notas se buscan por remitente de la herramienta, no por palabras del asunto: Zoom y Read.ai no ponen "notas" ni "resumen".
 - No necesita Juntas ni el permiso del calendario: lee correo.

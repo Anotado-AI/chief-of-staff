@@ -78,7 +78,7 @@ Si la persona no usa Proyectos, no se crea: el conector solo basta.
 ## Frases para la web app y la guía de uso
 
 - "¿Qué tengo pendiente hoy?"
-- "Prepárame para la junta con Altavista de las 5."
+- "Prepárame para la junta del consejo de las 5."
 - "Deja de limpiar lo de Liverpool; las facturas sí me importan."
 - "¿Qué moviste hoy y por qué?"
 - "Contéstale a Ana que sí al jueves."

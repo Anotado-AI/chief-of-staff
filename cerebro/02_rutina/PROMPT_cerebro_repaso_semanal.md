@@ -111,7 +111,7 @@ Guárdala con `guardar_memoria('experiencia', …)` y anota el cambio en el cuad
 
 ```
 Esta semana limpié 312 correos y rescataste 3.
-1. Ya no toco nada de Altavista: rescataste 2 de sus correos. [Deshacer]
+1. Ya no toco nada de los auditores: rescataste 2 de sus correos. [Deshacer]
 2. Tus borradores para tu equipo ahora van sin saludo, como los editas tú. [Deshacer]
 3. En consejo ya no cuento "asamblea": te daba falsas alarmas con el colegio. [Deshacer]
 ```
